@@ -1,6 +1,0 @@
-framework module CCNLaunchAtLoginItem {
-  umbrella header "CCNLaunchAtLoginItem-umbrella.h"
-
-  export *
-  module * { export * }
-}
