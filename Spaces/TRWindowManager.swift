@@ -8,7 +8,7 @@
 
 import Foundation
 import Silica
-import MASShortcut
+//import MASShortcut
 
 class TRWindowManager: TRManagerBase{
     /// Shared instance of WindowManager

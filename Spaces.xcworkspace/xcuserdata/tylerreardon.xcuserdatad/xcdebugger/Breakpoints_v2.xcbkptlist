@@ -168,7 +168,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Spaces/TRWindowManager.swift"
-            timestampString = "523437580.563418"
+            timestampString = "540776734.788323"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "369"
@@ -184,7 +184,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Spaces/TRWindowManager.swift"
-            timestampString = "523437580.563418"
+            timestampString = "540776734.7884001"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "380"
@@ -200,7 +200,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Spaces/TRWindowManager.swift"
-            timestampString = "523437580.563418"
+            timestampString = "540776734.788457"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "416"
@@ -216,7 +216,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Spaces/TRWindowManager.swift"
-            timestampString = "523437580.563418"
+            timestampString = "540776734.7885081"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "391"
@@ -232,7 +232,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Spaces/TRWindowManager.swift"
-            timestampString = "523437580.563418"
+            timestampString = "540776734.7885571"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "403"
@@ -248,7 +248,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Spaces/TRWindowManager.swift"
-            timestampString = "523437580.563418"
+            timestampString = "540776734.788606"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "420"
@@ -264,7 +264,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Spaces/TRWindowManager.swift"
-            timestampString = "523437580.563418"
+            timestampString = "540776734.788655"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "417"
@@ -280,28 +280,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Spaces/TRWindowManager.swift"
-            timestampString = "523437580.563418"
+            timestampString = "540776734.788703"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "169"
             endingLineNumber = "169"
             landmarkName = "showOverlayWindow(frame:animateWidth:fromLeft:animateHeight:fromTop:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Spaces/TRWindowSizer.swift"
-            timestampString = "523502634.425822"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "resizeWindow(window:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -317,8 +301,24 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "48"
             endingLineNumber = "48"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "getSizedRectForFrame(frame:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Spaces/TRHotKey.swift"
+            timestampString = "540776734.788829"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "registerShortcut(characters:modifiers:callback:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

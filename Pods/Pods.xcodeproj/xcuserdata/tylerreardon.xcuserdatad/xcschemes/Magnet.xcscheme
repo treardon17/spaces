@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '5B3664B001F4BDCFFD4140BFD928CA86'
-               BlueprintName = 'MASShortcut-MASShortcut'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'MASShortcut.bundle'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2699C86A758434E92ACF24DA56E20987"
+               BlueprintName = "Magnet"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "Magnet.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

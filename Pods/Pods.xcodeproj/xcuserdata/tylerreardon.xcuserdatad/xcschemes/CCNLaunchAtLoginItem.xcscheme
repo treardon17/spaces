@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'C498FD7DE612282917428F55BB37F555'
-               BlueprintName = 'CCNLaunchAtLoginItem'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'CCNLaunchAtLoginItem.framework'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C498FD7DE612282917428F55BB37F555"
+               BlueprintName = "CCNLaunchAtLoginItem"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "CCNLaunchAtLoginItem.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
