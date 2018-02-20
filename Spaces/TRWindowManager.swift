@@ -40,7 +40,7 @@ class TRWindowManager: TRManagerBase{
     
     var currentActiveApp:TRApplication?{
         get{
-            let pid = NSWorkspace.shared().frontmostApplication?.processIdentifier
+            let pid = NSWorkspace.shared.frontmostApplication?.processIdentifier
             return self.getAppForPID(pid: pid)
         }
     }
@@ -69,11 +69,11 @@ class TRWindowManager: TRManagerBase{
         self.updateListeners()
         
         // We need to listen to mouse down events to ensure that the preview is shown at the correct time
-        self.mousedownEventHandler = GlobalEventMonitor(mask: .leftMouseDown, handler: self.mousedownEvent(event:))
+        self.mousedownEventHandler = GlobalEventMonitor(mask: NSEvent.EventTypeMask.leftMouseDown, handler: self.mousedownEvent(event:))
         self.mousedownEventHandler?.start()
         
         // We need to listen to mouse drag events so we know where the window is
-        self.mousedragEventHandler = GlobalEventMonitor(mask: .leftMouseDragged, handler: self.mousedragEvent(event:))
+        self.mousedragEventHandler = GlobalEventMonitor(mask: NSEvent.EventTypeMask.leftMouseDragged, handler: self.mousedragEvent(event:))
         self.mousedragEventHandler?.start()
     }
     
@@ -124,7 +124,7 @@ class TRWindowManager: TRManagerBase{
     
     ///Returns a list of all the running applications
     private func getAllRunningApps() -> [NSRunningApplication]{
-        let workspace = NSWorkspace.shared()
+        let workspace = NSWorkspace.shared
         let runningApplications = workspace.runningApplications;
         return runningApplications;
     }
@@ -182,7 +182,7 @@ class TRWindowManager: TRManagerBase{
     func cancelCurrentAnimationsIfNeeded(app: TRApplication){
         if app.id == self.currentActiveApp?.id{
             // If no mouse buttons are pressed, we hide the overlay
-            if NSEvent.pressedMouseButtons() < 1{
+            if NSEvent.pressedMouseButtons < 1{
                 self.hideOverlayWindow()
                 self.windowFinishedMoving(window: self.windowToResize)
             }
@@ -275,7 +275,7 @@ class TRWindowManager: TRManagerBase{
             
             // Listen for mouseup events so we know when the drag has finished
             if self.mouseupEventHandler == nil{
-                self.mouseupEventHandler = GlobalEventMonitor(mask: .leftMouseUp, handler: self.mouseupEvent(event:))
+                self.mouseupEventHandler = GlobalEventMonitor(mask: NSEvent.EventTypeMask.leftMouseUp, handler: self.mouseupEvent(event:))
                 self.mouseupEventHandler?.start()
             }
             
@@ -287,12 +287,12 @@ class TRWindowManager: TRManagerBase{
             let windowTopPos = screenFrame.origin.y
             
             let fullScreenFrame = screen.frameIncludingDockAndMenu()
-            let menuBarHeight = NSApplication.shared().mainMenu!.menuBarHeight
+            let menuBarHeight = NSApplication.shared.mainMenu!.menuBarHeight
             let dockHeight = fullScreenFrame.height - screenFrame.height - menuBarHeight
             
             // We need to set the origin of the mouse pointer to be the bottom because we're using
             //  CGRects rather than NSRects here, and the origin is different
-            var mouseLocation = NSEvent.mouseLocation()
+            var mouseLocation = NSEvent.mouseLocation
             mouseLocation.setOriginFromFrame(frame: fullScreenFrame)
             
             let isOnLeft = ( mouseLocation.x >= windowLeftPos && mouseLocation.x < windowLeftPos + margin )
@@ -466,9 +466,9 @@ class TRWindowManager: TRManagerBase{
     // Utilities
     
     public static func getScreenMouseIsOn() -> NSScreen?{
-        let mousePos = NSEvent.mouseLocation()
-        let screens = NSScreen.screens()
-        for screen in screens!{
+        let mousePos = NSEvent.mouseLocation
+        let screens = NSScreen.screens
+        for screen in screens{
             let point = CGPoint(x: mousePos.x, y: mousePos.y)
             if screen.frame.contains(point){
                 return screen

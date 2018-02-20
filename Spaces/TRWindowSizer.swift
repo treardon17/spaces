@@ -18,15 +18,13 @@ class TRWindowSizer: NSObject{
     init(shortcutKeys:[String], shortcutModifiers:[String], xProp:CGFloat, yProp:CGFloat, widthProp: CGFloat, heightProp: CGFloat){
         super.init()
         self.windowSize = TRWindowSize(xProp: xProp, yProp: yProp, widthProp: widthProp, heightProp: heightProp)
-        self.hotkey = TRHotKey()
-        self.hotkey?.registerShortcut(characters: shortcutKeys, modifiers: shortcutModifiers, callback: self.callback)
+        self.hotkey = TRHotKeyManager.shared.createHotKey(keys: shortcutKeys, modifiers: shortcutModifiers, action: self.callback)
     }
     
     init(shortcutKeys:[String], shortcutModifiers:[String], size:TRWindowSize){
         super.init()
         self.windowSize = size
-        self.hotkey = TRHotKey()
-        self.hotkey?.registerShortcut(characters: shortcutKeys, modifiers: shortcutModifiers, callback: self.callback)
+        self.hotkey = TRHotKeyManager.shared.createHotKey(keys: shortcutKeys, modifiers: shortcutModifiers, action: self.callback)
     }
     
     func callback(){

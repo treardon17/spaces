@@ -16,6 +16,7 @@
 		C350B39E1F286AD00008F0E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C350B39C1F286AD00008F0E2 /* Main.storyboard */; };
 		C350B3A91F286AD00008F0E2 /* SpacesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C350B3A81F286AD00008F0E2 /* SpacesTests.swift */; };
 		C350B3B41F286AD00008F0E2 /* SpacesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C350B3B31F286AD00008F0E2 /* SpacesUITests.swift */; };
+		C377A984203BACBD001E2E6C /* TRHotkeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C377A983203BACBD001E2E6C /* TRHotkeyManager.swift */; };
 		C38E876C1F286C480010BD4C /* TRWindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38E876B1F286C480010BD4C /* TRWindowManager.swift */; };
 		C3A07D3B1F2C038900D4E285 /* TROverlayWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A07D3A1F2C038900D4E285 /* TROverlayWindow.swift */; };
 		C3A07D541F2E6AB000D4E285 /* GlobalEventsMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A07D531F2E6AB000D4E285 /* GlobalEventsMonitor.swift */; };
@@ -70,6 +71,7 @@
 		C350B3AF1F286AD00008F0E2 /* SpacesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpacesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C350B3B31F286AD00008F0E2 /* SpacesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacesUITests.swift; sourceTree = "<group>"; };
 		C350B3B51F286AD00008F0E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C377A983203BACBD001E2E6C /* TRHotkeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRHotkeyManager.swift; sourceTree = "<group>"; };
 		C38E876B1F286C480010BD4C /* TRWindowManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TRWindowManager.swift; sourceTree = "<group>"; };
 		C3A07D3A1F2C038900D4E285 /* TROverlayWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TROverlayWindow.swift; sourceTree = "<group>"; };
 		C3A07D531F2E6AB000D4E285 /* GlobalEventsMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GlobalEventsMonitor.swift; path = ../GlobalEventsMonitor.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 			children = (
 				C38E876B1F286C480010BD4C /* TRWindowManager.swift */,
 				C3D8D4001F29B25F00845A2E /* TRManagerBase.swift */,
+				C377A983203BACBD001E2E6C /* TRHotkeyManager.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -305,18 +308,20 @@
 					C350B3921F286AD00008F0E2 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = F63F9F65P7;
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 					C350B3A31F286AD00008F0E2 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = F63F9F65P7;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						TestTargetID = C350B3921F286AD00008F0E2;
 					};
 					C350B3AE1F286AD00008F0E2 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = F63F9F65P7;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						TestTargetID = C350B3921F286AD00008F0E2;
 					};
@@ -555,6 +560,7 @@
 				C350B3991F286AD00008F0E2 /* ViewController.swift in Sources */,
 				C3A07D541F2E6AB000D4E285 /* GlobalEventsMonitor.swift in Sources */,
 				C350B3971F286AD00008F0E2 /* AppDelegate.swift in Sources */,
+				C377A984203BACBD001E2E6C /* TRHotkeyManager.swift in Sources */,
 				C3A07D991F32F35400D4E285 /* TRWindowSizer.swift in Sources */,
 				C38E876C1F286C480010BD4C /* TRWindowManager.swift in Sources */,
 				C3A07D9B1F32FCF900D4E285 /* TRWindowSize.swift in Sources */,
@@ -730,7 +736,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Spaces/Spaces-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -748,7 +755,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.rockrabbit.Spaces;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Spaces/Spaces-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -764,7 +772,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rockrabbit.SpacesTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Spaces.app/Contents/MacOS/Spaces";
 			};
 			name = Debug;
@@ -781,7 +790,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rockrabbit.SpacesTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Spaces.app/Contents/MacOS/Spaces";
 			};
 			name = Release;
@@ -797,7 +807,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rockrabbit.SpacesUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = Spaces;
 			};
 			name = Debug;
@@ -813,7 +824,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rockrabbit.SpacesUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = Spaces;
 			};
 			name = Release;

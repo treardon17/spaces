@@ -15,7 +15,7 @@ class TROverlayWindow: NSWindowController{
     var endFrame: NSRect?
     
     init() {
-        let window = NSWindow(contentRect: NSRect.zero, styleMask: NSWindowStyleMask.borderless, backing: NSBackingStoreType.buffered, defer: true)
+        let window = NSWindow(contentRect: NSRect.zero, styleMask: NSWindow.StyleMask.borderless, backing: NSWindow.BackingStoreType.buffered, defer: true)
         super.init(window: window)
         
         if let window = self.window{
@@ -30,7 +30,7 @@ class TROverlayWindow: NSWindowController{
             window.titlebarAppearsTransparent = true
             
             // Set the level of the window to be always on top
-            window.level = Int(CGWindowLevelForKey(.maximumWindow))
+            window.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.maximumWindow)))
         }
     }
     
@@ -61,7 +61,7 @@ class TROverlayWindow: NSWindowController{
             NSAnimationContext.runAnimationGroup({context in
                 
                 //Indicate the duration of the animation
-                NSAnimationContext.current().duration = (animated ? 0.25 : 0)
+                NSAnimationContext.current.duration = (animated ? 0.25 : 0)
 
                 // Fade in
                 window.animator().alphaValue = 0.5

@@ -12,7 +12,7 @@ import Silica
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    let statusItem:NSStatusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength);
+    let statusItem:NSStatusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength);
     var darkModeOn:Bool = true;
     var window:TROverlayWindow? = nil;
 
