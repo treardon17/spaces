@@ -9,16 +9,16 @@
 import Foundation
 
 class TRWindowSize:NSObject{
-    private var _widthProportion:CGFloat!
+    private var _widthProp:CGFloat!
     var widthProportion:CGFloat{
         get{
-            return self._widthProportion
+            return self._widthProp
         }
     }
-    private var _heightProportion:CGFloat!
+    private var _heightProp:CGFloat!
     var heightProportion:CGFloat{
         get{
-            return self._heightProportion
+            return self._heightProp
         }
     }
     private var _xProp:CGFloat!
@@ -33,13 +33,45 @@ class TRWindowSize:NSObject{
             return self._yProp
         }
     }
+    private var _xOffset:CGFloat?
+    var xOffset:CGFloat?{
+        get{
+            return self._xOffset
+        }
+    }
+    private var _yOffset:CGFloat?
+    var yOffset:CGFloat?{
+        get{
+            return self._yOffset
+        }
+    }
+    private var _widthOffset:CGFloat?
+    var widthOffset:CGFloat?{
+        get{
+            return self._widthOffset
+        }
+    }
+    private var _heightOffset:CGFloat?
+    var heightOffset:CGFloat?{
+        get{
+            return self._heightOffset
+        }
+    }
     
     init(xProp:CGFloat, yProp:CGFloat, widthProp: CGFloat, heightProp: CGFloat){
         super.init()
-        self._widthProportion = widthProp
-        self._heightProportion = heightProp
+        self._widthProp = widthProp
+        self._heightProp = heightProp
         self._xProp = xProp
         self._yProp = yProp
+    }
+    
+    convenience init(xProp:CGFloat, yProp:CGFloat, xOffset:CGFloat, yOffset:CGFloat, widthProp:CGFloat, heightProp:CGFloat, widthOffset:CGFloat, heightOffset:CGFloat) {
+        self.init(xProp: xProp, yProp: yProp, widthProp: widthProp, heightProp: heightProp)
+        self._xOffset = xOffset
+        self._yOffset = yOffset
+        self._widthOffset = widthOffset
+        self._heightOffset = heightOffset
     }
     
     func getSizedRectForFrame(frame:CGRect) -> CGRect{
