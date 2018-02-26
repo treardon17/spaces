@@ -7,8 +7,19 @@
 //
 
 import Foundation
+import AppKit
 
 class TRWindowSize:NSObject{
+    var statusBarHeight:CGFloat{
+        get {
+            var statusBarHeight:CGFloat = 0
+            if let menu = NSApplication.shared.mainMenu {
+                statusBarHeight = menu.menuBarHeight
+            }
+            return statusBarHeight
+        }
+    }
+    
     private var _widthProp:CGFloat!
     var widthProportion:CGFloat{
         get{
@@ -74,9 +85,17 @@ class TRWindowSize:NSObject{
         self._heightOffset = heightOffset
     }
     
+    func getInvertedSizedRectForFrame(frame:CGRect) -> CGRect {
+        let x = (frame.origin.x + (frame.width * self.xProportion))
+        let windowHeight = (frame.height * self.yProportion)
+        let newOriginY = -frame.origin.y - frame.height + windowHeight
+        
+        return CGRect(x: x , y: newOriginY, width: frame.width * self.widthProportion, height: frame.height * self.heightProportion)
+    }
+    
     func getSizedRectForFrame(frame:CGRect) -> CGRect{
         let x = (frame.origin.x + (frame.width * self.xProportion))
-        let y = (frame.origin.y + (frame.height * self.yProportion))
+        let y = (frame.origin.y + self.statusBarHeight + (frame.height * self.yProportion))
         return CGRect(x: x , y: y, width: frame.width * self.widthProportion, height: frame.height * self.heightProportion)
     }
 }

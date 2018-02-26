@@ -168,7 +168,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Spaces/TRWindowManager.swift"
-            timestampString = "540783030.176266"
+            timestampString = "541303979.640656"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "369"
@@ -184,7 +184,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Spaces/TRWindowManager.swift"
-            timestampString = "540783030.176332"
+            timestampString = "541303979.640731"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "380"
@@ -200,7 +200,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Spaces/TRWindowManager.swift"
-            timestampString = "540783030.176378"
+            timestampString = "541303979.640787"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "416"
@@ -216,7 +216,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Spaces/TRWindowManager.swift"
-            timestampString = "540783030.176423"
+            timestampString = "541303979.640837"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "391"
@@ -232,7 +232,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Spaces/TRWindowManager.swift"
-            timestampString = "540783030.176465"
+            timestampString = "541303979.640885"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "403"
@@ -248,7 +248,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Spaces/TRWindowManager.swift"
-            timestampString = "540783030.176514"
+            timestampString = "541303979.640933"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "420"
@@ -264,7 +264,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Spaces/TRWindowManager.swift"
-            timestampString = "540783030.176559"
+            timestampString = "541303979.640981"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "417"
@@ -280,7 +280,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Spaces/TRWindowManager.swift"
-            timestampString = "540783030.1766"
+            timestampString = "541303979.641029"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "169"
@@ -292,64 +292,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Spaces/TRWindowSize.swift"
-            timestampString = "523502859.703911"
+            timestampString = "541303979.641081"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
             landmarkName = "getSizedRectForFrame(frame:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Spaces/TRHotkeyManager.swift"
-            timestampString = "540783030.176659"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
-            landmarkName = "createHotKey(keys:modifiers:action:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Spaces/TRHotKey.swift"
-            timestampString = "540805267.016458"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "registerShortcut(characters:modifiers:identifier:action:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Spaces/TRHotKey.swift"
-            timestampString = "540805267.016896"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "handleShortcut()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

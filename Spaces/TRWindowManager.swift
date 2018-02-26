@@ -56,7 +56,7 @@ class TRWindowManager: TRManagerBase{
         
         self.sizers.append(TRWindowSizer(shortcutKeys: ["enter"], shortcutModifiers: ["control", "option"], xProp: 0, yProp: 0, widthProp: 1, heightProp: 1))
         self.sizers.append(TRWindowSizer(shortcutKeys: ["left"], shortcutModifiers: ["control", "option"], xProp: 0, yProp: 0, widthProp: 0.5, heightProp: 1))
-        self.sizers.append(TRWindowSizer(shortcutKeys: ["right"], shortcutModifiers: ["control", "option"], xProp: 0.5, yProp: 1, widthProp: 0.5, heightProp: 1))
+        self.sizers.append(TRWindowSizer(shortcutKeys: ["right"], shortcutModifiers: ["control", "option"], xProp: 0.5, yProp: 0, widthProp: 0.5, heightProp: 1))
         self.sizers.append(TRWindowSizer(shortcutKeys: ["up"], shortcutModifiers: ["control", "option"], xProp: 0, yProp: 0, widthProp: 1, heightProp: 0.5))
         self.sizers.append(TRWindowSizer(shortcutKeys: ["down"], shortcutModifiers: ["control", "option"], xProp: 0, yProp: 0.5, widthProp: 1, heightProp: 0.5))
     }
