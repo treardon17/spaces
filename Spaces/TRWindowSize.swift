@@ -86,16 +86,22 @@ class TRWindowSize:NSObject{
     }
     
     func getInvertedSizedRectForFrame(frame:CGRect) -> CGRect {
-        let x = (frame.origin.x + (frame.width * self.xProportion))
-        let windowHeight = (frame.height * self.yProportion)
-        let newOriginY = -frame.origin.y - frame.height + windowHeight
+        let windowHeight = (frame.size.height * self.heightProportion) - self.statusBarHeight
+        let windowWidth = (frame.size.width * self.widthProportion)
+//        let newOriginY = -frame.origin.y - frame.height + windowHeight
+        let y = -(frame.size.height - frame.origin.y) + (frame.size.height * self.yProportion)
+        let x = (frame.origin.x + (frame.size.width * self.xProportion))
+        print("frame height:", frame.size.height)
+        print("y proportion: ", self.yProportion)
+        print("status bar height:", self.statusBarHeight)
+        print("window height:", windowHeight)
         
-        return CGRect(x: x , y: newOriginY, width: frame.width * self.widthProportion, height: frame.height * self.heightProportion)
+        return CGRect(x: x , y: y, width: windowWidth, height: windowHeight)
     }
     
     func getSizedRectForFrame(frame:CGRect) -> CGRect{
         let x = (frame.origin.x + (frame.width * self.xProportion))
         let y = (frame.origin.y + self.statusBarHeight + (frame.height * self.yProportion))
-        return CGRect(x: x , y: y, width: frame.width * self.widthProportion, height: frame.height * self.heightProportion)
+        return CGRect(x: x , y: y, width: frame.width * self.widthProportion, height: (frame.height * self.heightProportion) - self.statusBarHeight)
     }
 }
