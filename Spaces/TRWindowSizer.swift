@@ -51,7 +51,7 @@ class TRWindowSizer: NSObject{
                 frame = myFrame
             }else{
 //                frame = self.windowSize.getSizedRectForFrame(frame: screen.frame)
-                frame = self.windowSize.getInvertedSizedRectForFrame(frame: screen.frame)
+                frame = self.windowSize.getInvertedSizedRectForScreen(screen: screen)
             }
             if let frame = frame{
                 print("frame is:", frame)

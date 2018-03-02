@@ -85,39 +85,15 @@ class TRWindowSize:NSObject{
         self._heightOffset = heightOffset
     }
     
-    func getInvertedSizedRectForFrame(frame:CGRect) -> CGRect {
-        let windowHeight = (frame.size.height * self.heightProportion) - (self.statusBarHeight * self.heightProportion)
-        let windowWidth = (frame.size.width * self.widthProportion)
-////        let newOriginY = -frame.origin.y - frame.height + windowHeight
-////        let y = -(frame.size.height - frame.origin.y) + (frame.size.height * self.yProportion)
-//        let y:CGFloat = -558 + self.statusBarHeight
-        let x = (frame.origin.x + (frame.size.width * self.xProportion))
-//        let y = (frame.origin.y + (frame.size.height * self.yProportion))
-//        let y = (frame.origin.y - frame.size.height) + (frame.size.height * self.yProportion) + windowHeight
-//        let y = (-frame.origin.y + (frame.size.height * self.yProportion)) - (frame.size.height * self.heightProportion ) + (self.statusBarHeight * self.heightProportion)
-        let y = (-frame.origin.y + (frame.size.height * self.yProportion)) + (self.statusBarHeight * self.heightProportion)
-        print("y is: ", y)
-        print("height is: ", windowHeight)
-        print("status bar height: ", self.statusBarHeight)
-//        print("frame height:", frame.size.height)
-//        print("y proportion: ", self.yProportion)
-//        print("status bar height:", self.statusBarHeight)
-//        print("window height:", windowHeight)
-//
-//        return CGRect(x: x , y: y, width: windowWidth, height: windowHeight)
+    func getInvertedSizedRectForScreen(screen:NSScreen) -> CGRect {
+        let frame = screen.frameIncludingDockAndMenu()
+        let rect = screen.backingAlignedRect(frame, options: AlignmentOptions.alignAllEdgesInward)
         
-//        TRY 2
-//        var newFrame = frame
-//        newFrame.origin.y -= frame.size.height
-//        newFrame.origin.y += windowHeight
-//        newFrame.origin.y += y
-//        newFrame.origin.x = x
-//        newFrame.size.width = windowWidth
-//        newFrame.size.height = windowHeight
-//        return newFrame
+        let windowHeight = (rect.size.height * self.heightProportion) // + self.statusBarHeight
+        let windowWidth = (rect.size.width * self.widthProportion)
+        let x = (rect.origin.x + (rect.size.width * self.xProportion))
+        let y = (rect.origin.y + (rect.size.height * self.yProportion)) // + self.statusBarHeight
         
-        
-//        return NSMakeRect(x, y, windowWidth, windowHeight)
         return CGRect(x: x, y: y, width: windowWidth, height: windowHeight)
     }
     
