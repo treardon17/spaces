@@ -20,52 +20,52 @@ class TRWindowSize:NSObject{
         }
     }
     
-    private var _widthProp:CGFloat!
+    private var _widthProp:CGFloat = 1
     var widthProportion:CGFloat{
         get{
             return self._widthProp
         }
     }
-    private var _heightProp:CGFloat!
+    private var _heightProp:CGFloat = 1
     var heightProportion:CGFloat{
         get{
             return self._heightProp
         }
     }
-    private var _xProp:CGFloat!
+    private var _xProp:CGFloat = 0
     var xProportion:CGFloat{
         get{
             return self._xProp
         }
     }
-    private var _yProp:CGFloat!
+    private var _yProp:CGFloat = 0
     var yProportion:CGFloat{
         get{
             return self._yProp
         }
     }
-    private var _xOffset:CGFloat?
-    var xOffset:CGFloat?{
+    private var _insetTop:CGFloat = 0
+    var insetTop:CGFloat{
         get{
-            return self._xOffset
+            return self._insetTop
         }
     }
-    private var _yOffset:CGFloat?
-    var yOffset:CGFloat?{
+    private var _insetBottom:CGFloat = 0
+    var insetBottom:CGFloat{
         get{
-            return self._yOffset
+            return self._insetBottom
         }
     }
-    private var _widthOffset:CGFloat?
-    var widthOffset:CGFloat?{
+    private var _insetLeft:CGFloat = 0
+    var insetLeft:CGFloat{
         get{
-            return self._widthOffset
+            return self._insetLeft
         }
     }
-    private var _heightOffset:CGFloat?
-    var heightOffset:CGFloat?{
+    private var _insetRight:CGFloat = 0
+    var insetRight:CGFloat{
         get{
-            return self._heightOffset
+            return self._insetRight
         }
     }
     
@@ -77,22 +77,25 @@ class TRWindowSize:NSObject{
         self._yProp = yProp
     }
     
-    convenience init(xProp:CGFloat, yProp:CGFloat, xOffset:CGFloat, yOffset:CGFloat, widthProp:CGFloat, heightProp:CGFloat, widthOffset:CGFloat, heightOffset:CGFloat) {
+    convenience init(xProp:CGFloat, yProp:CGFloat, widthProp:CGFloat, heightProp:CGFloat, insetTop:CGFloat, insetBottom:CGFloat, insetLeft:CGFloat, insetRight:CGFloat) {
         self.init(xProp: xProp, yProp: yProp, widthProp: widthProp, heightProp: heightProp)
-        self._xOffset = xOffset
-        self._yOffset = yOffset
-        self._widthOffset = widthOffset
-        self._heightOffset = heightOffset
+        self._insetTop = insetTop
+        self._insetBottom = insetBottom
+        self._insetLeft = insetLeft
+        self._insetRight = insetRight
     }
     
     func getInvertedSizedRectForScreen(screen:NSScreen) -> CGRect {
+        // Get the dimensions of the screen
         let frame = screen.frameIncludingDockAndMenu()
+        // Convert that frame from having an origin in the
+        // bottom left to one with an origin of top left
         let rect = screen.backingAlignedRect(frame, options: AlignmentOptions.alignAllEdgesInward)
         
-        let windowHeight = (rect.size.height * self.heightProportion) // + self.statusBarHeight
-        let windowWidth = (rect.size.width * self.widthProportion)
-        let x = (rect.origin.x + (rect.size.width * self.xProportion))
-        let y = (rect.origin.y + (rect.size.height * self.yProportion)) // + self.statusBarHeight
+        let windowHeight = (rect.size.height * self.heightProportion) - (self.insetTop + self.insetBottom)
+        let windowWidth = (rect.size.width * self.widthProportion) - (self.insetRight + self.insetLeft)
+        let x = (rect.origin.x + (rect.size.width * self.xProportion)) + self.insetLeft
+        let y = (rect.origin.y + (rect.size.height * self.yProportion)) + self.insetTop
         
         return CGRect(x: x, y: y, width: windowWidth, height: windowHeight)
     }

@@ -54,11 +54,17 @@ class TRWindowManager: TRManagerBase{
         // Initializations
         self.setupListeners()
         
-        self.sizers.append(TRWindowSizer(shortcutKeys: ["enter"], shortcutModifiers: ["control", "option"], xProp: 0, yProp: 0, widthProp: 1, heightProp: 1))
-        self.sizers.append(TRWindowSizer(shortcutKeys: ["left"], shortcutModifiers: ["control", "option"], xProp: 0, yProp: 0, widthProp: 0.5, heightProp: 1))
-        self.sizers.append(TRWindowSizer(shortcutKeys: ["right"], shortcutModifiers: ["control", "option"], xProp: 0.5, yProp: 0, widthProp: 0.5, heightProp: 1))
-        self.sizers.append(TRWindowSizer(shortcutKeys: ["up"], shortcutModifiers: ["control", "option"], xProp: 0, yProp: 0, widthProp: 1, heightProp: 0.5))
-        self.sizers.append(TRWindowSizer(shortcutKeys: ["down"], shortcutModifiers: ["control", "option"], xProp: 0, yProp: 0.5, widthProp: 1, heightProp: 0.5))
+        let fullscreen = TRWindowSizer(shortcutKeys: ["enter"], shortcutModifiers: ["control", "option"], xProp: 0, yProp: 0, widthProp: 1, heightProp: 1, inset: 100)
+        let halfLeft = TRWindowSizer(shortcutKeys: ["left"], shortcutModifiers: ["control", "option"], xProp: 0, yProp: 0, widthProp: 0.5, heightProp: 1, inset: 100)
+        let halfRight = TRWindowSizer(shortcutKeys: ["right"], shortcutModifiers: ["control", "option"], xProp: 0.5, yProp: 0, widthProp: 0.5, heightProp: 1, inset: 100)
+        let halfUp = TRWindowSizer(shortcutKeys: ["up"], shortcutModifiers: ["control", "option"], xProp: 0, yProp: 0, widthProp: 1, heightProp: 0.5, inset: 100)
+        let halfDown = TRWindowSizer(shortcutKeys: ["down"], shortcutModifiers: ["control", "option"], xProp: 0, yProp: 0.5, widthProp: 1, heightProp: 0.5, inset: 100)
+        
+        self.sizers.append(fullscreen)
+        self.sizers.append(halfLeft)
+        self.sizers.append(halfRight)
+        self.sizers.append(halfUp)
+        self.sizers.append(halfDown)
     }
     
     deinit {

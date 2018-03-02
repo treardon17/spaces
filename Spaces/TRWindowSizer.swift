@@ -15,9 +15,15 @@ class TRWindowSizer: NSObject{
     var windows = [SIWindow]()
     var frame:CGRect?
     
-    init(shortcutKeys:[String], shortcutModifiers:[String], xProp:CGFloat, yProp:CGFloat, widthProp: CGFloat, heightProp: CGFloat){
+    init(shortcutKeys:[String], shortcutModifiers:[String], xProp:CGFloat, yProp:CGFloat, widthProp:CGFloat, heightProp:CGFloat, insetTop:CGFloat, insetBottom:CGFloat, insetLeft:CGFloat, insetRight:CGFloat){
         super.init()
-        self.windowSize = TRWindowSize(xProp: xProp, yProp: yProp, widthProp: widthProp, heightProp: heightProp)
+        self.windowSize = TRWindowSize(xProp: xProp, yProp: yProp, widthProp: widthProp, heightProp: heightProp, insetTop: insetTop, insetBottom: insetBottom, insetLeft: insetRight, insetRight: insetLeft)
+        self.hotkey = TRHotKeyManager.shared.createHotKey(keys: shortcutKeys, modifiers: shortcutModifiers, action: self.callback)
+    }
+    
+    init(shortcutKeys:[String], shortcutModifiers:[String], xProp:CGFloat, yProp:CGFloat, widthProp:CGFloat, heightProp:CGFloat, inset: CGFloat){
+        super.init()
+        self.windowSize = TRWindowSize(xProp: xProp, yProp: yProp, widthProp: widthProp, heightProp: heightProp, insetTop: inset, insetBottom: inset, insetLeft: inset, insetRight: inset)
         self.hotkey = TRHotKeyManager.shared.createHotKey(keys: shortcutKeys, modifiers: shortcutModifiers, action: self.callback)
     }
     
