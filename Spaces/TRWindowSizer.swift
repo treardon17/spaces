@@ -43,24 +43,15 @@ class TRWindowSizer: NSObject{
         self.frame = frame
     }
     
-    // ********************************************************
-    // ********************************************************
-    // TODO: I'm guessing there's a problem with this function
-    // or getSizedRectForFrame on external monitors...
-    // ********************************************************
-    // ********************************************************
     func resizeWindow(window:SIWindow){
         var frame:CGRect? = nil;
         if let screen = window.screen(){
-            print("screen is:", screen.frame)
             if let myFrame = self.frame{
                 frame = myFrame
             }else{
-//                frame = self.windowSize.getSizedRectForFrame(frame: screen.frame)
-                frame = self.windowSize.getInvertedSizedRectForScreen(screen: screen)
+                frame = self.windowSize.getSizedRectForScreen(screen: screen)
             }
             if let frame = frame{
-                print("frame is:", frame)
                 window.setFrame(frame)
             }
         }

@@ -10,6 +10,19 @@ import Foundation
 import AppKit
 
 class TRWindowSize:NSObject{
+    
+    enum Edge {
+        case top
+        case bottom
+        case left
+        case right
+    }
+    
+    enum Position {
+        case center
+        case any
+    }
+    
     var statusBarHeight:CGFloat{
         get {
             var statusBarHeight:CGFloat = 0
@@ -20,6 +33,12 @@ class TRWindowSize:NSObject{
         }
     }
     
+    private var _position:Position = .any
+    var position:Position{
+        get{
+            return self._position
+        }
+    }
     private var _widthProp:CGFloat = 1
     var widthProportion:CGFloat{
         get{
@@ -77,6 +96,21 @@ class TRWindowSize:NSObject{
         self._yProp = yProp
     }
     
+    init(position:Position, widthProp:CGFloat, heightProp:CGFloat) {
+        super.init()
+        self._position = position
+        self._widthProp = widthProp
+        self._heightProp = heightProp
+    }
+    
+    convenience init(position:Position, widthProp:CGFloat, heightProp:CGFloat, inset:CGFloat) {
+        self.init(position: position, widthProp: widthProp, heightProp: heightProp)
+        self._insetTop = inset
+        self._insetBottom = inset
+        self._insetLeft = inset
+        self._insetRight = inset
+    }
+    
     convenience init(xProp:CGFloat, yProp:CGFloat, widthProp:CGFloat, heightProp:CGFloat, insetTop:CGFloat, insetBottom:CGFloat, insetLeft:CGFloat, insetRight:CGFloat) {
         self.init(xProp: xProp, yProp: yProp, widthProp: widthProp, heightProp: heightProp)
         self._insetTop = insetTop
@@ -85,7 +119,11 @@ class TRWindowSize:NSObject{
         self._insetRight = insetRight
     }
     
-    func getInvertedSizedRectForScreen(screen:NSScreen) -> CGRect {
+    convenience init(xProp:CGFloat, yProp:CGFloat, widthProp:CGFloat, heightProp:CGFloat, inset:CGFloat) {
+        self.init(xProp: xProp, yProp: yProp, widthProp: widthProp, heightProp: heightProp, insetTop: inset, insetBottom: inset, insetLeft: inset, insetRight: inset)
+    }
+    
+    func getSizedRectForScreen(screen:NSScreen) -> CGRect {
         // Get the dimensions of the screen
         let frame = screen.frameIncludingDockAndMenu()
         // Convert that frame from having an origin in the
@@ -94,8 +132,17 @@ class TRWindowSize:NSObject{
         
         let windowHeight = (rect.size.height * self.heightProportion) - (self.insetTop + self.insetBottom)
         let windowWidth = (rect.size.width * self.widthProportion) - (self.insetRight + self.insetLeft)
-        let x = (rect.origin.x + (rect.size.width * self.xProportion)) + self.insetLeft
-        let y = (rect.origin.y + (rect.size.height * self.yProportion)) + self.insetTop
+        
+        var x:CGFloat = 0
+        var y:CGFloat = 0
+        
+        if (self.position == .any) {
+            x = (rect.origin.x + (rect.size.width * self.xProportion)) + self.insetLeft
+            y = (rect.origin.y + (rect.size.height * self.yProportion)) + self.insetTop
+        } else if (self.position == .center) {
+            x = (rect.origin.x + (rect.size.width / 2)) - (windowWidth / 2)
+            y = (rect.origin.y + (rect.size.height / 2)) - (windowHeight / 2)
+        }
         
         return CGRect(x: x, y: y, width: windowWidth, height: windowHeight)
     }

@@ -54,7 +54,7 @@ class TRWindowManager: TRManagerBase{
         // Initializations
         self.setupListeners()
         
-        let fullscreen = TRWindowSizer(shortcutKeys: ["enter"], shortcutModifiers: ["control", "option"], xProp: 0, yProp: 0, widthProp: 1, heightProp: 1, inset: 100)
+        let fullscreen = TRWindowSizer(shortcutKeys: ["enter"], shortcutModifiers: ["control", "option"], size: TRWindowSize(position: .center, widthProp: 1, heightProp: 1, inset: 50))
         let halfLeft = TRWindowSizer(shortcutKeys: ["left"], shortcutModifiers: ["control", "option"], xProp: 0, yProp: 0, widthProp: 0.5, heightProp: 1, inset: 100)
         let halfRight = TRWindowSizer(shortcutKeys: ["right"], shortcutModifiers: ["control", "option"], xProp: 0.5, yProp: 0, widthProp: 0.5, heightProp: 1, inset: 100)
         let halfUp = TRWindowSizer(shortcutKeys: ["up"], shortcutModifiers: ["control", "option"], xProp: 0, yProp: 0, widthProp: 1, heightProp: 0.5, inset: 100)
