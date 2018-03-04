@@ -34,14 +34,17 @@ class TRWindowSize:NSObject{
         }
     }
     
-//    var positionX:Position = .normal
-//    var positionY:Position = .normal
+    // Relative to window size
     var transformX:CGFloat = 0
     var transformY:CGFloat = 0
+    // Proportions
     var widthProp:CGFloat = 1
     var heightProp:CGFloat = 1
     var xProp:CGFloat = 0
     var yProp:CGFloat = 0
+    // Set values
+    var width:CGFloat?
+    var height:CGFloat?
     var insetTop:CGFloat = 0
     var insetBottom:CGFloat = 0
     var insetLeft:CGFloat = 0
@@ -98,6 +101,18 @@ class TRWindowSize:NSObject{
         self.init(xProp: xProp, yProp: yProp, widthProp: widthProp, heightProp: heightProp, insetTop: inset, insetBottom: inset, insetLeft: inset, insetRight: inset)
     }
     
+    init(xProp:CGFloat, yProp:CGFloat, transformX:CGFloat, transformY:CGFloat, width:CGFloat, height:CGFloat, insetTop:CGFloat, insetBottom:CGFloat, insetLeft:CGFloat, insetRight:CGFloat, offsetX:CGFloat, offsetY:CGFloat) {
+        super.init()
+        self.xProp = xProp
+        self.yProp = yProp
+        self.transformX = transformX
+        self.transformY = transformY
+        self.insetTop = insetTop
+        self.insetBottom = insetBottom
+        self.insetLeft = insetLeft
+        self.insetRight = insetRight
+    }
+    
     func getSizedRectForScreen(screen:NSScreen, window: SIWindow) -> CGRect {
         // Get the dimensions of the screen
         let frame = screen.frameIncludingDockAndMenu()
@@ -105,8 +120,16 @@ class TRWindowSize:NSObject{
         // bottom left to one with an origin of top left
         let rect = screen.backingAlignedRect(frame, options: AlignmentOptions.alignAllEdgesInward)
         
-        let windowHeight = (rect.size.height * self.heightProp) - (self.insetTop + self.insetBottom)
-        let windowWidth = (rect.size.width * self.widthProp) - (self.insetRight + self.insetLeft)
+        var windowHeight:CGFloat = 0
+        var windowWidth:CGFloat = 0
+        
+        if let width = self.width, let height = self.height{
+            windowWidth = width
+            windowHeight = height
+        } else {
+            windowHeight = (rect.size.height * self.heightProp) - (self.insetTop + self.insetBottom)
+            windowWidth = (rect.size.width * self.widthProp) - (self.insetRight + self.insetLeft)
+        }
         
         let y:CGFloat = ((rect.origin.y + (rect.size.height * self.yProp)) + self.insetTop + self.offsetY) - (windowHeight * self.transformY)
         let x:CGFloat = ((rect.origin.x + (rect.size.width * self.xProp)) + self.insetLeft + self.offsetX) - (windowWidth * self.transformX)
