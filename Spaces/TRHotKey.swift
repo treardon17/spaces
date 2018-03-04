@@ -85,8 +85,9 @@ class TRHotKey: NSObject{
     }
     
     func codeForCharacter(char: String) -> Int{
-        
         switch char {
+        case "'":
+            return Int(Keycode.apostrophe)
         case "0":
             return Int(Keycode.zero)
         case "1":

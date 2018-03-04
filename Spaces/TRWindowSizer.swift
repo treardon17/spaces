@@ -49,10 +49,17 @@ class TRWindowSizer: NSObject{
             if let myFrame = self.frame{
                 frame = myFrame
             }else{
-                frame = self.windowSize.getSizedRectForScreen(screen: screen)
+                frame = self.windowSize.getSizedRectForScreen(screen: screen, window: window)
             }
             if let frame = frame{
                 window.setFrame(frame)
+                if frame.equalTo(window.frame()) {
+                    // success
+                    print("Resize success!")
+                } else {
+                    // fail
+                    print("Window could not be resized")
+                }
             }
         }
     }

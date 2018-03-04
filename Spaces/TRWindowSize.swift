@@ -8,6 +8,7 @@
 
 import Foundation
 import AppKit
+import Silica
 
 class TRWindowSize:NSObject{
     
@@ -18,10 +19,10 @@ class TRWindowSize:NSObject{
         case right
     }
     
-    enum Position {
-        case center
-        case any
-    }
+//    enum Position {
+//        case center
+//        case normal
+//    }
     
     var statusBarHeight:CGFloat{
         get {
@@ -33,123 +34,89 @@ class TRWindowSize:NSObject{
         }
     }
     
-    private var _position:Position = .any
-    var position:Position{
-        get{
-            return self._position
-        }
-    }
-    private var _widthProp:CGFloat = 1
-    var widthProportion:CGFloat{
-        get{
-            return self._widthProp
-        }
-    }
-    private var _heightProp:CGFloat = 1
-    var heightProportion:CGFloat{
-        get{
-            return self._heightProp
-        }
-    }
-    private var _xProp:CGFloat = 0
-    var xProportion:CGFloat{
-        get{
-            return self._xProp
-        }
-    }
-    private var _yProp:CGFloat = 0
-    var yProportion:CGFloat{
-        get{
-            return self._yProp
-        }
-    }
-    private var _insetTop:CGFloat = 0
-    var insetTop:CGFloat{
-        get{
-            return self._insetTop
-        }
-    }
-    private var _insetBottom:CGFloat = 0
-    var insetBottom:CGFloat{
-        get{
-            return self._insetBottom
-        }
-    }
-    private var _insetLeft:CGFloat = 0
-    var insetLeft:CGFloat{
-        get{
-            return self._insetLeft
-        }
-    }
-    private var _insetRight:CGFloat = 0
-    var insetRight:CGFloat{
-        get{
-            return self._insetRight
-        }
-    }
+//    var positionX:Position = .normal
+//    var positionY:Position = .normal
+    var transformX:CGFloat = 0
+    var transformY:CGFloat = 0
+    var widthProp:CGFloat = 1
+    var heightProp:CGFloat = 1
+    var xProp:CGFloat = 0
+    var yProp:CGFloat = 0
+    var insetTop:CGFloat = 0
+    var insetBottom:CGFloat = 0
+    var insetLeft:CGFloat = 0
+    var insetRight:CGFloat = 0
+    
+    var offsetX:CGFloat = 0
+    var offsetY:CGFloat = 0
     
     init(xProp:CGFloat, yProp:CGFloat, widthProp: CGFloat, heightProp: CGFloat){
         super.init()
-        self._widthProp = widthProp
-        self._heightProp = heightProp
-        self._xProp = xProp
-        self._yProp = yProp
+        self.widthProp = widthProp
+        self.heightProp = heightProp
+        self.xProp = xProp
+        self.yProp = yProp
     }
     
-    init(position:Position, widthProp:CGFloat, heightProp:CGFloat) {
+    init(xProp:CGFloat, yProp:CGFloat, transformX:CGFloat, transformY:CGFloat, widthProp:CGFloat, heightProp:CGFloat) {
         super.init()
-        self._position = position
-        self._widthProp = widthProp
-        self._heightProp = heightProp
+        self.xProp = xProp
+        self.yProp = yProp
+        self.transformX = transformX
+        self.transformY = transformY
+        self.widthProp = widthProp
+        self.heightProp = heightProp
     }
     
-    convenience init(position:Position, widthProp:CGFloat, heightProp:CGFloat, inset:CGFloat) {
-        self.init(position: position, widthProp: widthProp, heightProp: heightProp)
-        self._insetTop = inset
-        self._insetBottom = inset
-        self._insetLeft = inset
-        self._insetRight = inset
+    convenience init(xProp:CGFloat, yProp:CGFloat, transformX:CGFloat, transformY:CGFloat, widthProp:CGFloat, heightProp:CGFloat, inset:CGFloat) {
+        self.init(xProp: xProp, yProp: yProp, transformX: transformX, transformY: transformY, widthProp: widthProp, heightProp: heightProp)
+        self.insetTop = inset
+        self.insetBottom = inset
+        self.insetLeft = inset
+        self.insetRight = inset
+    }
+    
+    convenience init(xProp:CGFloat, yProp:CGFloat, transformX:CGFloat, transformY:CGFloat, widthProp:CGFloat, heightProp:CGFloat, insetTop:CGFloat, insetBottom:CGFloat, insetLeft:CGFloat, insetRight:CGFloat, offsetX:CGFloat, offsetY:CGFloat) {
+        self.init(xProp: xProp, yProp: yProp, transformX: transformX, transformY: transformY, widthProp: widthProp, heightProp: heightProp)
+        self.insetTop = insetTop
+        self.insetBottom = insetBottom
+        self.insetLeft = insetLeft
+        self.insetRight = insetRight
+        self.offsetX = offsetX
+        self.offsetY = offsetY
     }
     
     convenience init(xProp:CGFloat, yProp:CGFloat, widthProp:CGFloat, heightProp:CGFloat, insetTop:CGFloat, insetBottom:CGFloat, insetLeft:CGFloat, insetRight:CGFloat) {
         self.init(xProp: xProp, yProp: yProp, widthProp: widthProp, heightProp: heightProp)
-        self._insetTop = insetTop
-        self._insetBottom = insetBottom
-        self._insetLeft = insetLeft
-        self._insetRight = insetRight
+        self.insetTop = insetTop
+        self.insetBottom = insetBottom
+        self.insetLeft = insetLeft
+        self.insetRight = insetRight
     }
     
     convenience init(xProp:CGFloat, yProp:CGFloat, widthProp:CGFloat, heightProp:CGFloat, inset:CGFloat) {
         self.init(xProp: xProp, yProp: yProp, widthProp: widthProp, heightProp: heightProp, insetTop: inset, insetBottom: inset, insetLeft: inset, insetRight: inset)
     }
     
-    func getSizedRectForScreen(screen:NSScreen) -> CGRect {
+    func getSizedRectForScreen(screen:NSScreen, window: SIWindow) -> CGRect {
         // Get the dimensions of the screen
         let frame = screen.frameIncludingDockAndMenu()
         // Convert that frame from having an origin in the
         // bottom left to one with an origin of top left
         let rect = screen.backingAlignedRect(frame, options: AlignmentOptions.alignAllEdgesInward)
         
-        let windowHeight = (rect.size.height * self.heightProportion) - (self.insetTop + self.insetBottom)
-        let windowWidth = (rect.size.width * self.widthProportion) - (self.insetRight + self.insetLeft)
+        let windowHeight = (rect.size.height * self.heightProp) - (self.insetTop + self.insetBottom)
+        let windowWidth = (rect.size.width * self.widthProp) - (self.insetRight + self.insetLeft)
         
-        var x:CGFloat = 0
-        var y:CGFloat = 0
-        
-        if (self.position == .any) {
-            x = (rect.origin.x + (rect.size.width * self.xProportion)) + self.insetLeft
-            y = (rect.origin.y + (rect.size.height * self.yProportion)) + self.insetTop
-        } else if (self.position == .center) {
-            x = (rect.origin.x + (rect.size.width / 2)) - (windowWidth / 2)
-            y = (rect.origin.y + (rect.size.height / 2)) - (windowHeight / 2)
-        }
+        let y:CGFloat = ((rect.origin.y + (rect.size.height * self.yProp)) + self.insetTop + self.offsetY) - (windowHeight * self.transformY)
+        let x:CGFloat = ((rect.origin.x + (rect.size.width * self.xProp)) + self.insetLeft + self.offsetX) - (windowWidth * self.transformX)
         
         return CGRect(x: x, y: y, width: windowWidth, height: windowHeight)
     }
     
     func getSizedRectForFrame(frame:CGRect) -> CGRect{
-        let x = (frame.origin.x + (frame.width * self.xProportion))
-        let y = (frame.origin.y + self.statusBarHeight + (frame.height * self.yProportion))
-        return CGRect(x: x , y: y, width: frame.width * self.widthProportion, height: (frame.height * self.heightProportion) - self.statusBarHeight)
+        let x = (frame.origin.x + (frame.width * self.xProp))
+        let y = (frame.origin.y + self.statusBarHeight + (frame.height * self.yProp))
+        return CGRect(x: x , y: y, width: frame.width * self.widthProp, height: (frame.height * self.heightProp) - self.statusBarHeight)
     }
 }

@@ -30,6 +30,7 @@
 		C3D8D4011F29B25F00845A2E /* TRManagerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D8D4001F29B25F00845A2E /* TRManagerBase.swift */; };
 		C3D8D4031F29C4EE00845A2E /* TRWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D8D4021F29C4EE00845A2E /* TRWindow.swift */; };
 		C3D8D4051F29C69200845A2E /* TRApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D8D4041F29C69200845A2E /* TRApplication.swift */; };
+		C3F3BDF1204C664400CE96EA /* TRFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F3BDF0204C664400CE96EA /* TRFileManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 		C3D8D4001F29B25F00845A2E /* TRManagerBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TRManagerBase.swift; sourceTree = "<group>"; };
 		C3D8D4021F29C4EE00845A2E /* TRWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TRWindow.swift; sourceTree = "<group>"; };
 		C3D8D4041F29C69200845A2E /* TRApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TRApplication.swift; sourceTree = "<group>"; };
+		C3F3BDF0204C664400CE96EA /* TRFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRFileManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +197,7 @@
 				C38E876B1F286C480010BD4C /* TRWindowManager.swift */,
 				C3D8D4001F29B25F00845A2E /* TRManagerBase.swift */,
 				C377A983203BACBD001E2E6C /* TRHotkeyManager.swift */,
+				C3F3BDF0204C664400CE96EA /* TRFileManager.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -555,6 +558,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3F3BDF1204C664400CE96EA /* TRFileManager.swift in Sources */,
 				C3A07D3B1F2C038900D4E285 /* TROverlayWindow.swift in Sources */,
 				C3D8D4011F29B25F00845A2E /* TRManagerBase.swift in Sources */,
 				C350B3991F286AD00008F0E2 /* ViewController.swift in Sources */,
