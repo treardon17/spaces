@@ -19,11 +19,6 @@ class TRWindowSize:NSObject{
         case right
     }
     
-//    enum Position {
-//        case center
-//        case normal
-//    }
-    
     var statusBarHeight:CGFloat{
         get {
             var statusBarHeight:CGFloat = 0
