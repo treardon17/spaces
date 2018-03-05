@@ -12,7 +12,7 @@ import Silica
 
 class TRWindowManager: TRManagerBase{
     /// Shared instance of WindowManager
-    static let sharedInstance = TRWindowManager()
+    static let shared = TRWindowManager()
     var listeningApps = [String: TRApplication]()
     var windows = [String:TRWindow]()
     var overlayWindow: TROverlayWindow!

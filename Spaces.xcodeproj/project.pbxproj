@@ -31,6 +31,7 @@
 		C3D8D4031F29C4EE00845A2E /* TRWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D8D4021F29C4EE00845A2E /* TRWindow.swift */; };
 		C3D8D4051F29C69200845A2E /* TRApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D8D4041F29C69200845A2E /* TRApplication.swift */; };
 		C3F3BDF1204C664400CE96EA /* TRFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F3BDF0204C664400CE96EA /* TRFileManager.swift */; };
+		C3F3BDF3204CF51B00CE96EA /* TRDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F3BDF2204CF51B00CE96EA /* TRDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		C3D8D4021F29C4EE00845A2E /* TRWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TRWindow.swift; sourceTree = "<group>"; };
 		C3D8D4041F29C69200845A2E /* TRApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TRApplication.swift; sourceTree = "<group>"; };
 		C3F3BDF0204C664400CE96EA /* TRFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRFileManager.swift; sourceTree = "<group>"; };
+		C3F3BDF2204CF51B00CE96EA /* TRDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +200,7 @@
 				C3D8D4001F29B25F00845A2E /* TRManagerBase.swift */,
 				C377A983203BACBD001E2E6C /* TRHotkeyManager.swift */,
 				C3F3BDF0204C664400CE96EA /* TRFileManager.swift */,
+				C3F3BDF2204CF51B00CE96EA /* TRDataManager.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -569,6 +572,7 @@
 				C38E876C1F286C480010BD4C /* TRWindowManager.swift in Sources */,
 				C3A07D9B1F32FCF900D4E285 /* TRWindowSize.swift in Sources */,
 				C3A07D561F2F033400D4E285 /* CGRect.swift in Sources */,
+				C3F3BDF3204CF51B00CE96EA /* TRDataManager.swift in Sources */,
 				C3A07D971F319A3C00D4E285 /* CGPoint.swift in Sources */,
 				C3A07D5D1F30380500D4E285 /* Logging.swift in Sources */,
 				C3A07D591F2F07B800D4E285 /* NSRect.swift in Sources */,
