@@ -170,10 +170,14 @@ class TRApplication: NSObject{
         self.runningApp = runningApplication
     }
     
-    convenience init(siApplication: SIApplication){
+    convenience init?(siApplication: SIApplication){
         let pid = siApplication.processIdentifier()
         let runningApplication = NSRunningApplication.init(processIdentifier: pid)
-        self.init(runningApplication: runningApplication!)
+        if let runningApplication = runningApplication {
+            self.init(runningApplication: runningApplication)
+        } else {
+            return nil
+        }
     }
     
     private func observe(notification: String, callback:closure){

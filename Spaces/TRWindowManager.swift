@@ -56,8 +56,8 @@ class TRWindowManager: TRManagerBase{
         
         let fullscreenMargin = TRWindowSizer(shortcutKeys: ["'"], shortcutModifiers: ["control", "option"], size: TRWindowSize(xProp: 0.5, yProp: 0.5, originX: 0.5, originY: 0.5, widthProp: 1, heightProp: 1, inset: 50))
         let fullscreen = TRWindowSizer(shortcutKeys: ["enter"], shortcutModifiers: ["control", "option"], size: TRWindowSize(xProp: 0, yProp: 0, originX: 0, originY: 0, widthProp: 1, heightProp: 1, inset: 0))
-        let halfLeft = TRWindowSizer(shortcutKeys: ["left"], shortcutModifiers: ["control", "option"], size: TRWindowSize(xProp: 0, yProp: 0, widthProp: 0.5, heightProp: 1, inset: 50))
-        let halfRight = TRWindowSizer(shortcutKeys: ["right"], shortcutModifiers: ["control", "option"], size: TRWindowSize(xProp: 0.5, yProp: 0, widthProp: 0.5, heightProp: 1, inset: 50))
+        let halfLeft = TRWindowSizer(shortcutKeys: ["left"], shortcutModifiers: ["control", "option"], size: TRWindowSize(xProp: 0, yProp: 0, widthProp: 0.5, heightProp: 1, insetTop: 50, insetBottom: 50, insetLeft: 50, insetRight: 25))
+        let halfRight = TRWindowSizer(shortcutKeys: ["right"], shortcutModifiers: ["control", "option"], size: TRWindowSize(xProp: 0.5, yProp: 0, widthProp: 0.5, heightProp: 1, insetTop: 50, insetBottom: 50, insetLeft: 25, insetRight: 50))
         let halfUp = TRWindowSizer(shortcutKeys: ["up"], shortcutModifiers: ["control", "option"], size: TRWindowSize(xProp: 0, yProp: 0, widthProp: 1, heightProp: 0.5, inset: 50))
         let halfDown = TRWindowSizer(shortcutKeys: ["down"], shortcutModifiers: ["control", "option"], size: TRWindowSize(xProp: 0, yProp: 0.5, widthProp: 1, heightProp: 0.5, inset: 50))
         
@@ -216,9 +216,11 @@ class TRWindowManager: TRManagerBase{
         let window = element as? SIWindow
         if let window = window, let siApp = window.app(){
             let app = TRApplication(siApplication: siApp)
-            Logger.log("app moved: \(app.title)")
+            Logger.log("app moved: \(String(describing: app?.title))")
             self.appMoving(window: window)
-            self.cancelCurrentAnimationsIfNeeded(app: app)
+            if let app = app {
+                self.cancelCurrentAnimationsIfNeeded(app: app)
+            }
         }
     }
     
@@ -226,8 +228,10 @@ class TRWindowManager: TRManagerBase{
         let window = element as? SIWindow
         if let window = window, let siApp = window.app(){
             let app = TRApplication(siApplication: siApp)
-            Logger.log("app finished moving \(app.title)")
-            self.cancelCurrentAnimationsIfNeeded(app: app)
+            Logger.log("app finished moving \(String(describing: app?.title))")
+            if let app = app {
+                self.cancelCurrentAnimationsIfNeeded(app: app)
+            }
         }
     }
     
@@ -235,17 +239,23 @@ class TRWindowManager: TRManagerBase{
         let window = element as? SIWindow
         if let window = window, let siApp = window.app(){
             let app = TRApplication(siApplication: siApp)
-            Logger.log("app resized: \(app.title)")
-            self.cancelCurrentAnimationsIfNeeded(app: app)
+            Logger.log("app resized: \(String(describing: app?.title))")
+            if let app = app {
+                self.cancelCurrentAnimationsIfNeeded(app: app)
+            }
         }
     }
     
     func onAppApplicationActivated(element: SIAccessibilityElement){
         let window = element as? SIWindow
-        if let window = window, let siApp = window.app(){
-            let app = TRApplication(siApplication: siApp)
-            Logger.log("app activated: \(app.title)")
-            self.cancelCurrentAnimationsIfNeeded(app: app)
+        if let window = window {
+            if let siApp = window.app() {
+                let app = TRApplication(siApplication: siApp)
+                Logger.log("app activated: \(String(describing: app?.title))")
+                if let app = app {
+                    self.cancelCurrentAnimationsIfNeeded(app: app)
+                }
+            }
         }
     }
     
@@ -253,9 +263,11 @@ class TRWindowManager: TRManagerBase{
         let window = element as? SIWindow
         if let window = window, let siApp = window.app(){
             let app = TRApplication(siApplication: siApp)
-            Logger.log("app created: \(app.title)")
+            Logger.log("app created: \(String(describing: app?.title))")
             self.updateListeners()
-            self.cancelCurrentAnimationsIfNeeded(app: app)
+            if let app = app {
+                self.cancelCurrentAnimationsIfNeeded(app: app)
+            }
         }
     }
     
@@ -263,8 +275,10 @@ class TRWindowManager: TRManagerBase{
         let window = element as? SIWindow
         if let window = window, let siApp = window.app(){
             let app = TRApplication(siApplication: siApp)
-            Logger.log("focus change: \(app.title)")
-            self.cancelCurrentAnimationsIfNeeded(app: app)
+            Logger.log("focus change: \(String(describing: app?.title))")
+            if let app = app {
+                self.cancelCurrentAnimationsIfNeeded(app: app)
+            }
         }
     }
     
@@ -272,7 +286,7 @@ class TRWindowManager: TRManagerBase{
         let window = element as? SIWindow
         if let window = window, let siApp = window.app(){
             let app = TRApplication(siApplication: siApp)
-            Logger.log("app miniaturized: \(app.title)")
+            Logger.log("app miniaturized: \(String(describing: app?.title))")
         }
     }
     
@@ -280,7 +294,7 @@ class TRWindowManager: TRManagerBase{
         let window = element as? SIWindow
         if let window = window, let siApp = window.app(){
             let app = TRApplication(siApplication: siApp)
-            Logger.log("app deminiaturized: \(app.title)")
+            Logger.log("app deminiaturized: \(String(describing: app?.title))")
         }
     }
     

@@ -110,7 +110,7 @@ class TRWindowSize:NSObject{
     
     func getSizedRectForScreen(screen:NSScreen) -> CGRect {
         // Get the dimensions of the screen
-        let frame = screen.frameIncludingDockAndMenu()
+        let frame = screen.frameWithoutDockOrMenu()
         // Convert that frame from having an origin in the
         // bottom left to one with an origin of top left
         let rect = screen.backingAlignedRect(frame, options: AlignmentOptions.alignAllEdgesInward)
