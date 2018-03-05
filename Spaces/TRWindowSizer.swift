@@ -33,7 +33,7 @@ class TRWindowSizer: NSObject{
         self.hotkey = TRHotKeyManager.shared.createHotKey(keys: shortcutKeys, modifiers: shortcutModifiers, action: self.callback)
     }
     
-    func callback(){
+    private func callback(){
         self.resizeWindows()
     }
     
@@ -49,7 +49,7 @@ class TRWindowSizer: NSObject{
             if let myFrame = self.frame{
                 frame = myFrame
             }else{
-                frame = self.windowSize.getSizedRectForScreen(screen: screen, window: window)
+                frame = self.windowSize.getSizedRectForScreen(screen: screen)
             }
             if let frame = frame{
                 window.setFrame(frame)
@@ -59,6 +59,8 @@ class TRWindowSizer: NSObject{
                 } else {
                     // fail
                     print("Window could not be resized")
+                    let newFrame = self.windowSize.getRectForUnmutableWindow(screen: screen, window: window)
+                    window.setFrame(newFrame)
                 }
             }
         }

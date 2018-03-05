@@ -113,7 +113,7 @@ class TRWindowSize:NSObject{
         self.insetRight = insetRight
     }
     
-    func getSizedRectForScreen(screen:NSScreen, window: SIWindow) -> CGRect {
+    func getSizedRectForScreen(screen:NSScreen) -> CGRect {
         // Get the dimensions of the screen
         let frame = screen.frameIncludingDockAndMenu()
         // Convert that frame from having an origin in the
@@ -138,6 +138,41 @@ class TRWindowSize:NSObject{
         let x:CGFloat = ((rect.origin.x + (rect.size.width * self.xProp)) + self.insetLeft + self.offsetX) - (totalWidth * self.originX)
         
         return CGRect(x: x, y: y, width: windowWidth, height: windowHeight)
+    }
+    
+    func getRectForUnmutableWindow(screen:NSScreen, window: SIWindow) -> CGRect {
+        let windowFrame = window.frame()
+        let screenX = screen.frame.origin.x
+        let screenY = screen.frame.origin.y
+        let screenXExtent = screenX + screen.frame.width
+        let screenYExtent = screenY + screen.frame.height
+        
+        let windowX = windowFrame.origin.x
+        let windowY = windowFrame.origin.y
+        let windowXExtent = windowX + windowFrame.width
+        let windowYExtent = windowY + windowFrame.height
+        
+        var newX:CGFloat = windowX
+        var newY:CGFloat = windowY
+        
+        // If part of the window is off the screen
+        if (windowX < screenX) {
+            let difference = screenX - windowX
+            newX += (difference + self.offsetX - self.insetLeft)
+        } else if (windowXExtent > screenXExtent) {
+            let difference = windowXExtent - screenXExtent
+            newX -= (difference + self.offsetX + self.insetRight)
+        }
+        
+        if (windowY < screenY) {
+            let difference = screenY - windowY
+            newY += (difference + self.offsetY - self.insetTop)
+        } else if (windowYExtent > screenYExtent) {
+            let difference = windowYExtent - screenYExtent
+            newY -= (difference + self.offsetY + self.insetBottom)
+        }
+        
+        return CGRect(x: newX, y: newY, width: windowFrame.width, height: windowFrame.height)
     }
     
     func getSizedRectForFrame(frame:CGRect) -> CGRect{
