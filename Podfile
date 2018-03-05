@@ -21,6 +21,7 @@ target 'Spaces' do
   pod 'Silica', git: 'https://github.com/ianyh/Silica'
   pod 'Sparkle'
   pod 'SwiftyJSON', '~> 3.1'
+  pod 'SwiftyDropbox'
 
   target 'SpacesTests' do
     inherit! :search_paths

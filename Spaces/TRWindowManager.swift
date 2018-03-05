@@ -54,12 +54,12 @@ class TRWindowManager: TRManagerBase{
         // Initializations
         self.setupListeners()
         
-        let fullscreenMargin = TRWindowSizer(shortcutKeys: ["'"], shortcutModifiers: ["control", "option"], size: TRWindowSize(xProp: 0.5, yProp: 0.5, originX: 0.5, originY: 0.5, widthProp: 1, heightProp: 1, inset: 50))
+        let fullscreenMargin = TRWindowSizer(shortcutKeys: ["'"], shortcutModifiers: ["control", "option"], size: TRWindowSize(xProp: 0.5, yProp: 0.5, originX: 0.5, originY: 0.5, widthProp: 1, heightProp: 1, inset: 25))
         let fullscreen = TRWindowSizer(shortcutKeys: ["enter"], shortcutModifiers: ["control", "option"], size: TRWindowSize(xProp: 0, yProp: 0, originX: 0, originY: 0, widthProp: 1, heightProp: 1, inset: 0))
-        let halfLeft = TRWindowSizer(shortcutKeys: ["left"], shortcutModifiers: ["control", "option"], size: TRWindowSize(xProp: 0, yProp: 0, widthProp: 0.5, heightProp: 1, insetTop: 50, insetBottom: 50, insetLeft: 50, insetRight: 25))
-        let halfRight = TRWindowSizer(shortcutKeys: ["right"], shortcutModifiers: ["control", "option"], size: TRWindowSize(xProp: 0.5, yProp: 0, widthProp: 0.5, heightProp: 1, insetTop: 50, insetBottom: 50, insetLeft: 25, insetRight: 50))
-        let halfUp = TRWindowSizer(shortcutKeys: ["up"], shortcutModifiers: ["control", "option"], size: TRWindowSize(xProp: 0, yProp: 0, widthProp: 1, heightProp: 0.5, inset: 50))
-        let halfDown = TRWindowSizer(shortcutKeys: ["down"], shortcutModifiers: ["control", "option"], size: TRWindowSize(xProp: 0, yProp: 0.5, widthProp: 1, heightProp: 0.5, inset: 50))
+        let halfLeft = TRWindowSizer(shortcutKeys: ["left"], shortcutModifiers: ["control", "option"], size: TRWindowSize(xProp: 0, yProp: 0, widthProp: 0.5, heightProp: 1, insetTop: 25, insetBottom: 25, insetLeft: 25, insetRight: 12.5))
+        let halfRight = TRWindowSizer(shortcutKeys: ["right"], shortcutModifiers: ["control", "option"], size: TRWindowSize(xProp: 0.5, yProp: 0, widthProp: 0.5, heightProp: 1, insetTop: 25, insetBottom: 25, insetLeft: 12.5, insetRight: 25))
+        let halfUp = TRWindowSizer(shortcutKeys: ["up"], shortcutModifiers: ["control", "option"], size: TRWindowSize(xProp: 0, yProp: 0, widthProp: 1, heightProp: 0.5, insetTop: 25, insetBottom: 12.5, insetLeft: 25, insetRight: 25))
+        let halfDown = TRWindowSizer(shortcutKeys: ["down"], shortcutModifiers: ["control", "option"], size: TRWindowSize(xProp: 0, yProp: 0.5, widthProp: 1, heightProp: 0.5, insetTop: 12.5, insetBottom: 25, insetLeft: 25, insetRight: 25))
         
         let thirdLeft = TRWindowSizer(shortcutKeys: ["j"], shortcutModifiers: ["control", "option"], size: TRWindowSize(xProp: 0, yProp: 0, originX: 0, originY: 0, widthProp: 0.3333, heightProp: 1, insetTop: 0, insetBottom: 0, insetLeft: 0, insetRight: 0, offsetX: 0, offsetY: 0))
         let thirdMiddle = TRWindowSizer(shortcutKeys: ["k"], shortcutModifiers: ["control", "option"], size: TRWindowSize(xProp: 0.3333, yProp: 0, originX: 0, originY: 0, widthProp: 0.3333, heightProp: 1, insetTop: 0, insetBottom: 0, insetLeft: 0, insetRight: 0, offsetX: 0, offsetY: 0))

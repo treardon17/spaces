@@ -160,8 +160,8 @@ class TRWindowSize:NSObject{
         }
         
         if (windowY < screenY) {
-            let difference = screenY - windowY
-            newY += (difference + self.offsetY - self.insetTop)
+//            let difference = screenY - windowY
+//            newY += (difference + self.offsetY - self.insetTop)
         } else if (windowYExtent > screenYExtent) {
             let difference = windowYExtent - screenYExtent
             newY -= (difference + self.offsetY + self.insetBottom)

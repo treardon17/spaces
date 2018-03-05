@@ -18,7 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         _ = TRWindowManager.shared
-        _ = TRDataManager.shared
+        _ = TRConfigManager.shared
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
