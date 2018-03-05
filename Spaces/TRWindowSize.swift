@@ -35,8 +35,8 @@ class TRWindowSize:NSObject{
     }
     
     // Relative to window size
-    var transformX:CGFloat = 0
-    var transformY:CGFloat = 0
+    var originX:CGFloat = 0
+    var originY:CGFloat = 0
     // Proportions
     var widthProp:CGFloat = 1
     var heightProp:CGFloat = 1
@@ -61,26 +61,26 @@ class TRWindowSize:NSObject{
         self.yProp = yProp
     }
     
-    init(xProp:CGFloat, yProp:CGFloat, transformX:CGFloat, transformY:CGFloat, widthProp:CGFloat, heightProp:CGFloat) {
+    init(xProp:CGFloat, yProp:CGFloat, originX:CGFloat, originY:CGFloat, widthProp:CGFloat, heightProp:CGFloat) {
         super.init()
         self.xProp = xProp
         self.yProp = yProp
-        self.transformX = transformX
-        self.transformY = transformY
+        self.originX = originX
+        self.originY = originY
         self.widthProp = widthProp
         self.heightProp = heightProp
     }
     
-    convenience init(xProp:CGFloat, yProp:CGFloat, transformX:CGFloat, transformY:CGFloat, widthProp:CGFloat, heightProp:CGFloat, inset:CGFloat) {
-        self.init(xProp: xProp, yProp: yProp, transformX: transformX, transformY: transformY, widthProp: widthProp, heightProp: heightProp)
+    convenience init(xProp:CGFloat, yProp:CGFloat, originX:CGFloat, originY:CGFloat, widthProp:CGFloat, heightProp:CGFloat, inset:CGFloat) {
+        self.init(xProp: xProp, yProp: yProp, originX: originX, originY: originY, widthProp: widthProp, heightProp: heightProp)
         self.insetTop = inset
         self.insetBottom = inset
         self.insetLeft = inset
         self.insetRight = inset
     }
     
-    convenience init(xProp:CGFloat, yProp:CGFloat, transformX:CGFloat, transformY:CGFloat, widthProp:CGFloat, heightProp:CGFloat, insetTop:CGFloat, insetBottom:CGFloat, insetLeft:CGFloat, insetRight:CGFloat, offsetX:CGFloat, offsetY:CGFloat) {
-        self.init(xProp: xProp, yProp: yProp, transformX: transformX, transformY: transformY, widthProp: widthProp, heightProp: heightProp)
+    convenience init(xProp:CGFloat, yProp:CGFloat, originX:CGFloat, originY:CGFloat, widthProp:CGFloat, heightProp:CGFloat, insetTop:CGFloat, insetBottom:CGFloat, insetLeft:CGFloat, insetRight:CGFloat, offsetX:CGFloat, offsetY:CGFloat) {
+        self.init(xProp: xProp, yProp: yProp, originX: originX, originY: originY, widthProp: widthProp, heightProp: heightProp)
         self.insetTop = insetTop
         self.insetBottom = insetBottom
         self.insetLeft = insetLeft
@@ -101,12 +101,12 @@ class TRWindowSize:NSObject{
         self.init(xProp: xProp, yProp: yProp, widthProp: widthProp, heightProp: heightProp, insetTop: inset, insetBottom: inset, insetLeft: inset, insetRight: inset)
     }
     
-    init(xProp:CGFloat, yProp:CGFloat, transformX:CGFloat, transformY:CGFloat, width:CGFloat, height:CGFloat, insetTop:CGFloat, insetBottom:CGFloat, insetLeft:CGFloat, insetRight:CGFloat, offsetX:CGFloat, offsetY:CGFloat) {
+    init(xProp:CGFloat, yProp:CGFloat, originX:CGFloat, originY:CGFloat, width:CGFloat, height:CGFloat, insetTop:CGFloat, insetBottom:CGFloat, insetLeft:CGFloat, insetRight:CGFloat, offsetX:CGFloat, offsetY:CGFloat) {
         super.init()
         self.xProp = xProp
         self.yProp = yProp
-        self.transformX = transformX
-        self.transformY = transformY
+        self.originX = originX
+        self.originY = originY
         self.insetTop = insetTop
         self.insetBottom = insetBottom
         self.insetLeft = insetLeft
@@ -131,8 +131,11 @@ class TRWindowSize:NSObject{
             windowWidth = (rect.size.width * self.widthProp) - (self.insetRight + self.insetLeft)
         }
         
-        let y:CGFloat = ((rect.origin.y + (rect.size.height * self.yProp)) + self.insetTop + self.offsetY) - (windowHeight * self.transformY)
-        let x:CGFloat = ((rect.origin.x + (rect.size.width * self.xProp)) + self.insetLeft + self.offsetX) - (windowWidth * self.transformX)
+        let totalHeight = windowHeight + self.insetTop + self.insetBottom
+        let totalWidth = windowWidth + self.insetLeft + self.insetRight
+        
+        let y:CGFloat = ((rect.origin.y + (rect.size.height * self.yProp)) + self.insetTop + self.offsetY) - (totalHeight * self.originY)
+        let x:CGFloat = ((rect.origin.x + (rect.size.width * self.xProp)) + self.insetLeft + self.offsetX) - (totalWidth * self.originX)
         
         return CGRect(x: x, y: y, width: windowWidth, height: windowHeight)
     }
