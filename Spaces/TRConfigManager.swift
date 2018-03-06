@@ -13,7 +13,7 @@ class TRConfigManager: TRManagerBase{
     static let shared = TRConfigManager()
     let appDirectory = "\(NSHomeDirectory())/.spaces"
     let configFileName = "config.json"
-    var config:JSON = [:]
+    var config:JSON!
     
     var configPath:String{
         get{ return "\(self.appDirectory)/\(self.configFileName)" }
@@ -32,7 +32,7 @@ class TRConfigManager: TRManagerBase{
     
     func createAppFileIfNeeded() {
         if (!TRFileManager.shared.fileExists(fullPath: self.configPath)) {
-            TRFileManager.shared.writeFile(fullPath: "\(self.appDirectory)", fileName:self.configFileName, data:"{}")
+            TRFileManager.shared.writeFile(fullPath: "\(self.appDirectory)", fileName:self.configFileName, data:self.getDefaultConfig().rawString()!)
         }
     }
     
@@ -45,6 +45,43 @@ class TRConfigManager: TRManagerBase{
     func loadConfig() {
         if let existingConfig = TRFileManager.shared.getJSONFromFile(fullPath: self.configPath) {
             self.config = existingConfig
+        } else {
+            self.config = self.getDefaultConfig()
         }
+    }
+    
+    func createJSONSizeConfig(xProp:CGFloat, yProp:CGFloat, widthProp:CGFloat, heightProp:CGFloat, width:CGFloat?, height:CGFloat?, originX:CGFloat, originY:CGFloat, insetTop:CGFloat, insetBottom:CGFloat, insetLeft:CGFloat, insetRight:CGFloat, offsetX:CGFloat, offsetY:CGFloat) -> JSON {
+        var config = JSON([
+            "xProp": xProp,
+            "yProp": yProp,
+            "widthProp": widthProp,
+            "heightProp": heightProp,
+            "originX": originX,
+            "originY": originY,
+            "insetTop": insetTop,
+            "insetBottom": insetBottom,
+            "insetLeft": insetLeft,
+            "insetRight": insetRight,
+            "offsetX": offsetX,
+            "offsetY": offsetY
+        ])
+        if let width = width { config["width"].double = Double(width) }
+        if let height = height { config["height"].double = Double(height) }
+        
+        return config
+    }
+    
+    func getDefaultConfig() -> JSON {
+        var sizes:JSON = [:]
+        let defaultInset:CGFloat = 25
+        sizes["fullscreen"] = self.createJSONSizeConfig(xProp: 0.5, yProp: 0.5, widthProp: 1, heightProp: 1, width: nil, height: nil, originX: 0.5, originY: 0.5, insetTop: defaultInset, insetBottom: defaultInset, insetLeft: defaultInset, insetRight: defaultInset, offsetX: 0, offsetY: 0)
+        sizes["halfLeft"] = self.createJSONSizeConfig(xProp: 0, yProp: 0, widthProp: 0.5, heightProp: 1, width: nil, height: nil, originX: 0, originY: 0, insetTop: defaultInset, insetBottom: defaultInset, insetLeft: defaultInset, insetRight: defaultInset/2, offsetX: 0, offsetY: 0)
+        sizes["halfRight"] = self.createJSONSizeConfig(xProp: 0.5, yProp: 0, widthProp: 0.5, heightProp: 1, width: nil, height: nil, originX: 0, originY: 0, insetTop: defaultInset, insetBottom: defaultInset, insetLeft: defaultInset/2, insetRight: defaultInset, offsetX: 0, offsetY: 0)
+        sizes["halfUp"] = self.createJSONSizeConfig(xProp: 0, yProp: 0, widthProp: 1, heightProp: 0.5, width: nil, height: nil, originX: 0, originY: 0, insetTop: defaultInset, insetBottom: defaultInset/2, insetLeft: defaultInset, insetRight: defaultInset, offsetX: 0, offsetY: 0)
+        sizes["halfDown"] = self.createJSONSizeConfig(xProp: 0, yProp: 0.5, widthProp: 1, heightProp: 0.5, width: nil, height: nil, originX: 0, originY: 0, insetTop: defaultInset/2, insetBottom: defaultInset, insetLeft: defaultInset, insetRight: defaultInset, offsetX: 0, offsetY: 0)
+        
+        var defaultConfig:JSON = [:]
+        defaultConfig["sizes"] = sizes
+        return defaultConfig
     }
 }

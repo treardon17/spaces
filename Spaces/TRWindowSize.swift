@@ -108,6 +108,23 @@ class TRWindowSize:NSObject{
         self.insetRight = insetRight
     }
     
+    init(xProp:CGFloat, yProp:CGFloat, widthProp:CGFloat, heightProp:CGFloat, width:CGFloat?, height:CGFloat?, originX:CGFloat, originY:CGFloat, insetTop:CGFloat, insetBottom:CGFloat, insetLeft:CGFloat, insetRight:CGFloat, offsetX:CGFloat, offsetY:CGFloat) {
+        super.init()
+        self.xProp = xProp
+        self.yProp = yProp
+        self.widthProp = widthProp
+        self.heightProp = heightProp
+        self.originX = originX
+        self.originY = originY
+        self.insetTop = insetTop
+        self.insetBottom = insetBottom
+        self.insetLeft = insetLeft
+        self.insetRight = insetRight
+        
+        if let width = width{ self.width = width }
+        if let height = height{ self.height = height }
+    }
+    
     func getSizedRectForScreen(screen:NSScreen) -> CGRect {
         // Get the dimensions of the screen
         let frame = screen.frameWithoutDockOrMenu()
