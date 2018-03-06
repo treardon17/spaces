@@ -75,7 +75,8 @@ class TRConfigManager: TRManagerBase{
     func getDefaultConfig() -> JSON {
         var sizes:JSON = [:]
         let defaultInset:CGFloat = 25
-        sizes["fullscreen"] = self.createJSONSizeConfig(xProp: 0.5, yProp: 0.5, widthProp: 1, heightProp: 1, width: nil, height: nil, originX: 0.5, originY: 0.5, insetTop: defaultInset, insetBottom: defaultInset, insetLeft: defaultInset, insetRight: defaultInset, offsetX: 0, offsetY: 0)
+        sizes["fullscreen"] = self.createJSONSizeConfig(xProp: 0.5, yProp: 0.5, widthProp: 1, heightProp: 1, width: nil, height: nil, originX: 0.5, originY: 0.5, insetTop: 0, insetBottom: 0, insetLeft: 0, insetRight: 0, offsetX: 0, offsetY: 0)
+        sizes["fullscreenMargin"] = self.createJSONSizeConfig(xProp: 0.5, yProp: 0.5, widthProp: 1, heightProp: 1, width: nil, height: nil, originX: 0.5, originY: 0.5, insetTop: defaultInset, insetBottom: defaultInset, insetLeft: defaultInset, insetRight: defaultInset, offsetX: 0, offsetY: 0)
         sizes["halfLeft"] = self.createJSONSizeConfig(xProp: 0, yProp: 0, widthProp: 0.5, heightProp: 1, width: nil, height: nil, originX: 0, originY: 0, insetTop: defaultInset, insetBottom: defaultInset, insetLeft: defaultInset, insetRight: defaultInset/2, offsetX: 0, offsetY: 0)
         sizes["halfRight"] = self.createJSONSizeConfig(xProp: 0.5, yProp: 0, widthProp: 0.5, heightProp: 1, width: nil, height: nil, originX: 0, originY: 0, insetTop: defaultInset, insetBottom: defaultInset, insetLeft: defaultInset/2, insetRight: defaultInset, offsetX: 0, offsetY: 0)
         sizes["halfUp"] = self.createJSONSizeConfig(xProp: 0, yProp: 0, widthProp: 1, heightProp: 0.5, width: nil, height: nil, originX: 0, originY: 0, insetTop: defaultInset, insetBottom: defaultInset/2, insetLeft: defaultInset, insetRight: defaultInset, offsetX: 0, offsetY: 0)
