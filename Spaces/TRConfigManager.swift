@@ -73,6 +73,7 @@ class TRConfigManager: TRManagerBase{
     }
     
     func getDefaultConfig() -> JSON {
+        // SIZES
         var sizes:JSON = [:]
         let defaultInset:CGFloat = 25
         sizes["fullscreen"] = self.createJSONSizeConfig(xProp: 0.5, yProp: 0.5, widthProp: 1, heightProp: 1, width: nil, height: nil, originX: 0.5, originY: 0.5, insetTop: 0, insetBottom: 0, insetLeft: 0, insetRight: 0, offsetX: 0, offsetY: 0)
@@ -83,8 +84,15 @@ class TRConfigManager: TRManagerBase{
         sizes["halfDown"] = self.createJSONSizeConfig(xProp: 0, yProp: 0.5, widthProp: 1, heightProp: 0.5, width: nil, height: nil, originX: 0, originY: 0, insetTop: defaultInset/2, insetBottom: defaultInset, insetLeft: defaultInset, insetRight: defaultInset, offsetX: 0, offsetY: 0)
         sizes["centered"] = self.createJSONSizeConfig(xProp: 0.5, yProp: 0.5, widthProp: nil, heightProp: nil, width: nil, height: nil, originX: 0.5, originY: 0.5, insetTop: 0, insetBottom: 0, insetLeft: 0, insetRight: 0, offsetX: 0, offsetY: 0)
         
+        
+        // SHORTCUTS
+        var shortcuts:JSON = [:]
+        
+        
+        // PUTTING IT ALL TOGETHER
         var defaultConfig:JSON = [:]
         defaultConfig["sizes"] = sizes
+        defaultConfig["shortcuts"] = shortcuts
         return defaultConfig
     }
 }
