@@ -50,12 +50,10 @@ class TRConfigManager: TRManagerBase{
         }
     }
     
-    func createJSONSizeConfig(xProp:CGFloat, yProp:CGFloat, widthProp:CGFloat, heightProp:CGFloat, width:CGFloat?, height:CGFloat?, originX:CGFloat, originY:CGFloat, insetTop:CGFloat, insetBottom:CGFloat, insetLeft:CGFloat, insetRight:CGFloat, offsetX:CGFloat, offsetY:CGFloat) -> JSON {
+    func createJSONSizeConfig(xProp:CGFloat, yProp:CGFloat, widthProp:CGFloat?, heightProp:CGFloat?, width:CGFloat?, height:CGFloat?, originX:CGFloat, originY:CGFloat, insetTop:CGFloat, insetBottom:CGFloat, insetLeft:CGFloat, insetRight:CGFloat, offsetX:CGFloat, offsetY:CGFloat) -> JSON {
         var config = JSON([
             "xProp": xProp,
             "yProp": yProp,
-            "widthProp": widthProp,
-            "heightProp": heightProp,
             "originX": originX,
             "originY": originY,
             "insetTop": insetTop,
@@ -65,6 +63,9 @@ class TRConfigManager: TRManagerBase{
             "offsetX": offsetX,
             "offsetY": offsetY
         ])
+
+        if let widthProp = widthProp { config["widthProp"].double = Double(widthProp) }
+        if let heightProp = heightProp { config["heightProp"].double = Double(heightProp) }
         if let width = width { config["width"].double = Double(width) }
         if let height = height { config["height"].double = Double(height) }
         
@@ -79,6 +80,7 @@ class TRConfigManager: TRManagerBase{
         sizes["halfRight"] = self.createJSONSizeConfig(xProp: 0.5, yProp: 0, widthProp: 0.5, heightProp: 1, width: nil, height: nil, originX: 0, originY: 0, insetTop: defaultInset, insetBottom: defaultInset, insetLeft: defaultInset/2, insetRight: defaultInset, offsetX: 0, offsetY: 0)
         sizes["halfUp"] = self.createJSONSizeConfig(xProp: 0, yProp: 0, widthProp: 1, heightProp: 0.5, width: nil, height: nil, originX: 0, originY: 0, insetTop: defaultInset, insetBottom: defaultInset/2, insetLeft: defaultInset, insetRight: defaultInset, offsetX: 0, offsetY: 0)
         sizes["halfDown"] = self.createJSONSizeConfig(xProp: 0, yProp: 0.5, widthProp: 1, heightProp: 0.5, width: nil, height: nil, originX: 0, originY: 0, insetTop: defaultInset/2, insetBottom: defaultInset, insetLeft: defaultInset, insetRight: defaultInset, offsetX: 0, offsetY: 0)
+        sizes["centered"] = self.createJSONSizeConfig(xProp: 0.5, yProp: 0.5, widthProp: nil, heightProp: nil, width: nil, height: nil, originX: 0.5, originY: 0.5, insetTop: 0, insetBottom: 0, insetLeft: 0, insetRight: 0, offsetX: 0, offsetY: 0)
         
         var defaultConfig:JSON = [:]
         defaultConfig["sizes"] = sizes
