@@ -180,6 +180,10 @@ class TRApplication: NSObject{
         }
     }
     
+    deinit {
+        self.removeAllObservers()
+    }
+    
     private func observe(notification: String, callback:closure){
         self.app.observeNotification(notification as CFString!, with: self.app) { (accessibilityElement) in
             if let callback = callback{ callback(accessibilityElement) }
