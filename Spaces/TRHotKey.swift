@@ -8,27 +8,55 @@
 
 import Foundation
 import Magnet
+import SwiftyJSON
 
 class TRHotKey: NSObject{
-    var action: (() -> Void)?
     var identifier: String!
+    var actionIdentifier: String?
     var hotkey: HotKey?
+    var characters:[String]!
+    var modifiers:[String]!
+    
+    private var _action: (() -> Void)? = nil
+    var action:(() -> Void)? {
+        get { return self._action }
+        set(val) {
+            if let val = val{
+                self.unregister()
+                self._action = val
+                self.registerShortcut(characters: self.characters, modifiers: self.modifiers, identifier: self.identifier)
+            } else {
+                self.unregister()
+                self._action = nil
+            }
+        }
+    }
+    
+    /// Creates an inactive hotkey. Must assign an action in order to activate.
+    init(characters:[String], modifiers:[String], actionIdentifier:String) {
+        super.init()
+        self.characters = characters
+        self.modifiers = modifiers
+        self.actionIdentifier = actionIdentifier
+    }
     
     init(characters: [String], modifiers: [String], identifier: String, action: @escaping ()->Void){
         super.init()
-        self.registerShortcut(characters: characters, modifiers: modifiers, identifier: identifier, action: action)
-       
-//        self.registerShortcut(characters: ["c"], modifiers: ["command", "control"]) {
-//            print("it works!!!!!")
-//        }
+        self.characters = characters
+        self.modifiers = modifiers
+        self.identifier = identifier
+        self.action = action
+    }
+    
+    deinit {
+        self.unregister()
     }
     
     /// Takes a list of characters and modifiers and completes the callback when those keys are pressed.
     ///     Note: non-visible characters such as space, option, command, arrows, are spelled out
-    private func registerShortcut(characters: [String], modifiers: [String], identifier: String, action: @escaping ()->Void){
+    private func registerShortcut(characters: [String], modifiers: [String], identifier: String){
         var keys:Int?
         var mods:NSEvent.ModifierFlags?
-        self.action = action
         
         for char in characters{
             if var keys = keys{
@@ -46,7 +74,6 @@ class TRHotKey: NSObject{
             }
         }
         
-        self.identifier = identifier
         if let keys = keys, let mods = mods{
             if let keyCombo = KeyCombo(keyCode: keys, cocoaModifiers: mods) {
                 self.hotkey = HotKey(identifier: self.identifier, keyCombo: keyCombo, target: self, action: #selector(self.handleShortcut))
@@ -64,9 +91,18 @@ class TRHotKey: NSObject{
     func unregister() {
         if let hotkey = self.hotkey{
             hotkey.unregister()
-        } else {
-            print("Could not unregister hotkey")
         }
+    }
+    
+    func getJSON() -> JSON {
+        var json = JSON([
+            "characters": JSON(self.characters),
+            "modifiers": JSON(self.modifiers)
+        ])
+        if let actionIdentifier = self.actionIdentifier {
+            json["actionIdentifier"].string = actionIdentifier
+        }
+        return json
     }
     
     func codeForModifier(mod: String) -> NSEvent.ModifierFlags{

@@ -15,6 +15,15 @@ class TRConfigManager: TRManagerBase{
     let configFileName = "config.json"
     var config:JSON!
     
+    private var _sizes = [String:TRWindowSize]()
+    var sizes:[String:TRWindowSize] {
+        get { return self._sizes }
+    }
+    
+    var shortcuts:[JSON]{
+        get{ return self.config["shortcuts"].arrayValue }
+    }
+    
     var configPath:String{
         get{ return "\(self.appDirectory)/\(self.configFileName)" }
     }
@@ -38,6 +47,8 @@ class TRConfigManager: TRManagerBase{
     
     func saveConfig() {
         if let configString = config.rawString() {
+            self.createAppFolderIfNeeded()
+            self.createAppFileIfNeeded()
             TRFileManager.shared.writeFile(fullPath: "\(self.appDirectory)", fileName:self.configFileName, data:configString)
         }
     }
@@ -48,51 +59,90 @@ class TRConfigManager: TRManagerBase{
         } else {
             self.config = self.getDefaultConfig()
         }
+        self.generateSizesFromConfig()
     }
     
-    func createJSONSizeConfig(xProp:CGFloat, yProp:CGFloat, widthProp:CGFloat?, heightProp:CGFloat?, width:CGFloat?, height:CGFloat?, originX:CGFloat, originY:CGFloat, insetTop:CGFloat, insetBottom:CGFloat, insetLeft:CGFloat, insetRight:CGFloat, offsetX:CGFloat, offsetY:CGFloat) -> JSON {
-        var config = JSON([
-            "xProp": xProp,
-            "yProp": yProp,
-            "originX": originX,
-            "originY": originY,
-            "insetTop": insetTop,
-            "insetBottom": insetBottom,
-            "insetLeft": insetLeft,
-            "insetRight": insetRight,
-            "offsetX": offsetX,
-            "offsetY": offsetY
-        ])
-
-        if let widthProp = widthProp { config["widthProp"].double = Double(widthProp) }
-        if let heightProp = heightProp { config["heightProp"].double = Double(heightProp) }
-        if let width = width { config["width"].double = Double(width) }
-        if let height = height { config["height"].double = Double(height) }
-        
-        return config
+    func getCGFloatFromJSON(json:JSON, nullable: Bool) -> CGFloat? {
+        var returnVal:CGFloat? = nil
+        if let val = json.double {
+            returnVal = CGFloat(val)
+        } else if nullable {
+            returnVal = nil
+        } else {
+            returnVal = CGFloat(0)
+        }
+        return returnVal
+    }
+    
+    func generateSizesFromConfig() {
+        for (key, json) in self.config["sizes"] {
+            let xProp = self.getCGFloatFromJSON(json: json["xProp"], nullable: false)!
+            let yProp = self.getCGFloatFromJSON(json: json["yProp"], nullable: false)!
+            let widthProp = self.getCGFloatFromJSON(json: json["widthProp"], nullable: true)
+            let heightProp = self.getCGFloatFromJSON(json: json["heightProp"], nullable: true)
+            let width = self.getCGFloatFromJSON(json: json["width"], nullable: true)
+            let height = self.getCGFloatFromJSON(json: json["height"], nullable: true)
+            let originX = self.getCGFloatFromJSON(json: json["originX"], nullable: false)!
+            let originY = self.getCGFloatFromJSON(json: json["originY"], nullable: false)!
+            let insetTop = self.getCGFloatFromJSON(json: json["insetTop"], nullable: false)!
+            let insetBottom = self.getCGFloatFromJSON(json: json["insetBottom"], nullable: false)!
+            let insetLeft = self.getCGFloatFromJSON(json: json["insetLeft"], nullable: false)!
+            let insetRight = self.getCGFloatFromJSON(json: json["insetRight"], nullable: false)!
+            let offsetX = self.getCGFloatFromJSON(json: json["offsetX"], nullable: false)!
+            let offsetY = self.getCGFloatFromJSON(json: json["offsetY"], nullable: false)!
+            
+            self._sizes[key] = TRWindowSize(xProp: xProp, yProp: yProp, widthProp: widthProp, heightProp: heightProp, width: width, height: height, originX: originX, originY: originY, insetTop: insetTop, insetBottom: insetBottom, insetLeft: insetLeft, insetRight: insetRight, offsetX: offsetX, offsetY: offsetY)
+        }
+    }
+    
+    func addSizeToConfig(name:String, size:TRWindowSize, overwrite:Bool) -> Bool {
+        if self.config["sizes"][name].dictionaryObject == nil || overwrite {
+            self.config["sizes"][name] = size.getJSON()
+            self._sizes[name] = size
+            self.saveConfig()
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func addShortcutToConfig(name:String, size:TRHotKey, overwrite:Bool) -> Bool {
+        if self.config["shortcuts"][name].dictionaryObject == nil || overwrite {
+            self.config["shortcuts"][name] = size.getJSON()
+            self.saveConfig()
+            return true
+        } else {
+            return false
+        }
     }
     
     func getDefaultConfig() -> JSON {
         // SIZES
         var sizes:JSON = [:]
         let defaultInset:CGFloat = 25
-        sizes["fullscreen"] = self.createJSONSizeConfig(xProp: 0.5, yProp: 0.5, widthProp: 1, heightProp: 1, width: nil, height: nil, originX: 0.5, originY: 0.5, insetTop: 0, insetBottom: 0, insetLeft: 0, insetRight: 0, offsetX: 0, offsetY: 0)
-        sizes["fullscreenMargin"] = self.createJSONSizeConfig(xProp: 0.5, yProp: 0.5, widthProp: 1, heightProp: 1, width: nil, height: nil, originX: 0.5, originY: 0.5, insetTop: defaultInset, insetBottom: defaultInset, insetLeft: defaultInset, insetRight: defaultInset, offsetX: 0, offsetY: 0)
-        sizes["halfLeft"] = self.createJSONSizeConfig(xProp: 0, yProp: 0, widthProp: 0.5, heightProp: 1, width: nil, height: nil, originX: 0, originY: 0, insetTop: defaultInset, insetBottom: defaultInset, insetLeft: defaultInset, insetRight: defaultInset/2, offsetX: 0, offsetY: 0)
-        sizes["halfRight"] = self.createJSONSizeConfig(xProp: 0.5, yProp: 0, widthProp: 0.5, heightProp: 1, width: nil, height: nil, originX: 0, originY: 0, insetTop: defaultInset, insetBottom: defaultInset, insetLeft: defaultInset/2, insetRight: defaultInset, offsetX: 0, offsetY: 0)
-        sizes["halfUp"] = self.createJSONSizeConfig(xProp: 0, yProp: 0, widthProp: 1, heightProp: 0.5, width: nil, height: nil, originX: 0, originY: 0, insetTop: defaultInset, insetBottom: defaultInset/2, insetLeft: defaultInset, insetRight: defaultInset, offsetX: 0, offsetY: 0)
-        sizes["halfDown"] = self.createJSONSizeConfig(xProp: 0, yProp: 0.5, widthProp: 1, heightProp: 0.5, width: nil, height: nil, originX: 0, originY: 0, insetTop: defaultInset/2, insetBottom: defaultInset, insetLeft: defaultInset, insetRight: defaultInset, offsetX: 0, offsetY: 0)
-        sizes["centered"] = self.createJSONSizeConfig(xProp: 0.5, yProp: 0.5, widthProp: nil, heightProp: nil, width: nil, height: nil, originX: 0.5, originY: 0.5, insetTop: 0, insetBottom: 0, insetLeft: 0, insetRight: 0, offsetX: 0, offsetY: 0)
-        
+        sizes["fullscreen"] = TRWindowSize(xProp: 0.5, yProp: 0.5, widthProp: 1, heightProp: 1, width: nil, height: nil, originX: 0.5, originY: 0.5, insetTop: 0, insetBottom: 0, insetLeft: 0, insetRight: 0, offsetX: 0, offsetY: 0).getJSON()
+        sizes["fullscreenMargin"] = TRWindowSize(xProp: 0.5, yProp: 0.5, widthProp: 1, heightProp: 1, width: nil, height: nil, originX: 0.5, originY: 0.5, insetTop: defaultInset, insetBottom: defaultInset, insetLeft: defaultInset, insetRight: defaultInset, offsetX: 0, offsetY: 0).getJSON()
+        sizes["halfLeft"] = TRWindowSize(xProp: 0, yProp: 0, widthProp: 0.5, heightProp: 1, width: nil, height: nil, originX: 0, originY: 0, insetTop: defaultInset, insetBottom: defaultInset, insetLeft: defaultInset, insetRight: defaultInset/2, offsetX: 0, offsetY: 0).getJSON()
+        sizes["halfRight"] = TRWindowSize(xProp: 0.5, yProp: 0, widthProp: 0.5, heightProp: 1, width: nil, height: nil, originX: 0, originY: 0, insetTop: defaultInset, insetBottom: defaultInset, insetLeft: defaultInset/2, insetRight: defaultInset, offsetX: 0, offsetY: 0).getJSON()
+        sizes["halfUp"] = TRWindowSize(xProp: 0, yProp: 0, widthProp: 1, heightProp: 0.5, width: nil, height: nil, originX: 0, originY: 0, insetTop: defaultInset, insetBottom: defaultInset/2, insetLeft: defaultInset, insetRight: defaultInset, offsetX: 0, offsetY: 0).getJSON()
+        sizes["halfDown"] = TRWindowSize(xProp: 0, yProp: 0.5, widthProp: 1, heightProp: 0.5, width: nil, height: nil, originX: 0, originY: 0, insetTop: defaultInset/2, insetBottom: defaultInset, insetLeft: defaultInset, insetRight: defaultInset, offsetX: 0, offsetY: 0).getJSON()
+        sizes["centered"] = TRWindowSize(xProp: 0.5, yProp: 0.5, widthProp: nil, heightProp: nil, width: nil, height: nil, originX: 0.5, originY: 0.5, insetTop: 0, insetBottom: 0, insetLeft: 0, insetRight: 0, offsetX: 0, offsetY: 0).getJSON()
         
         // SHORTCUTS
-        var shortcuts:JSON = [:]
-        
+        let shortcuts:[JSON] = [
+            TRHotKey(characters: ["enter"], modifiers: ["control", "option"], actionIdentifier: "fullscreen").getJSON(),
+            TRHotKey(characters: ["'"], modifiers: ["control", "option"], actionIdentifier: "fullscreenMargin").getJSON(),
+            TRHotKey(characters: ["left"], modifiers: ["control", "option"], actionIdentifier: "halfLeft").getJSON(),
+            TRHotKey(characters: ["right"], modifiers: ["control", "option"], actionIdentifier: "halfRight").getJSON(),
+            TRHotKey(characters: ["up"], modifiers: ["control", "option"], actionIdentifier: "halfUp").getJSON(),
+            TRHotKey(characters: ["down"], modifiers: ["control", "option"], actionIdentifier: "halfDown").getJSON(),
+            TRHotKey(characters: ["c"], modifiers: ["control", "option"], actionIdentifier: "centered").getJSON()
+        ]
         
         // PUTTING IT ALL TOGETHER
         var defaultConfig:JSON = [:]
         defaultConfig["sizes"] = sizes
-        defaultConfig["shortcuts"] = shortcuts
+        defaultConfig["shortcuts"] = JSON(shortcuts)
         return defaultConfig
     }
 }

@@ -12,6 +12,10 @@ class TRHotKeyManager{
     static let shared = TRHotKeyManager()
     private var hotkeyMap = [String: TRHotKey]()
     
+    func createHotKey(hotkey:TRHotKey, action: @escaping () -> Void) {
+        
+    }
+    
     func createHotKey(keys:[String], modifiers:[String], action: @escaping () -> Void) -> TRHotKey {
         let identifier = self.getHashForShortcut(keys: keys, modifiers: modifiers)
         let hotkey = TRHotKey(characters: keys, modifiers: modifiers, identifier: identifier, action: action)
@@ -20,10 +24,7 @@ class TRHotKeyManager{
     }
     
     func removeHotKey(identifier: String) {
-        if let hotkey = self.hotkeyMap[identifier] {
-            hotkey.unregister()
-            self.hotkeyMap[identifier] = nil
-        }
+        self.hotkeyMap[identifier] = nil
     }
     
     private func getHashForShortcut(keys: [String], modifiers: [String]) -> String{

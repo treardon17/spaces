@@ -15,6 +15,11 @@ class TRWindowSizer: NSObject{
     var windows = [SIWindow]()
     var frame:CGRect?
     
+    init(hotkey:TRHotKey, size:TRWindowSize) {
+        self.hotkey = hotkey
+        self.windowSize = size
+    }
+    
     init(shortcutKeys:[String], shortcutModifiers:[String], size:TRWindowSize){
         super.init()
         self.windowSize = size

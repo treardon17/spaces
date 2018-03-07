@@ -9,6 +9,7 @@
 import Foundation
 import AppKit
 import Silica
+import SwiftyJSON
 
 class TRWindowSize:NSObject{
     
@@ -188,9 +189,25 @@ class TRWindowSize:NSObject{
         return CGRect(x: newX, y: newY, width: windowFrame.width, height: windowFrame.height)
     }
     
-//    func getSizedRectForFrame(frame:CGRect) -> CGRect{
-//        let x = (frame.origin.x + (frame.width * self.xProp))
-//        let y = (frame.origin.y + self.statusBarHeight + (frame.height * self.yProp))
-//        return CGRect(x: x , y: y, width: frame.width * self.widthProp, height: (frame.height * self.heightProp) - self.statusBarHeight)
-//    }
+    func getJSON() -> JSON {
+        var json = JSON([
+            "xProp": self.xProp,
+            "yProp": self.yProp,
+            "originX": self.originX,
+            "originY": self.originY,
+            "insetTop": self.insetTop,
+            "insetBottom": self.insetBottom,
+            "insetLeft": self.insetLeft,
+            "insetRight": self.insetRight,
+            "offsetX": self.offsetX,
+            "offsetY": self.offsetY
+            ])
+        
+        if let widthProp = self.widthProp { json["widthProp"].double = Double(widthProp) }
+        if let heightProp = self.heightProp { json["heightProp"].double = Double(heightProp) }
+        if let width = self.width { json["width"].double = Double(width) }
+        if let height = self.height { json["height"].double = Double(height) }
+        
+        return json
+    }
 }
