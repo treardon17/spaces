@@ -31,6 +31,14 @@ class TRWindowSizer: NSObject{
         self.windowSize = size
     }
     
+    deinit {
+        self.windowSize = nil
+        self.frame = nil
+        if let hotkey = self.hotkey {
+            TRHotKeyManager.shared.removeHotKey(identifier: hotkey.identifier)
+        }
+    }
+    
     func trigger(){
         self.resizeWindows()
     }
