@@ -293,161 +293,161 @@ class TRWindowManager: TRManagerBase{
     // Action handlers
     
     private func appMoving(window: SIWindow?){
-        if let window = window, let screen = TRWindowManager.getScreenMouseIsOn(){
-            
-            // Listen for mouseup events so we know when the drag has finished
-            if self.mouseupEventHandler == nil{
-                self.mouseupEventHandler = GlobalEventMonitor(mask: NSEvent.EventTypeMask.leftMouseUp, handler: self.mouseupEvent(event:))
-                self.mouseupEventHandler?.start()
-            }
-            
-            let screenFrame = screen.frameWithoutDockOrMenu()
-            let margin:CGFloat = screenFrame.width * 0.02
-            let windowLeftPos = screenFrame.origin.x
-            let windowRightPos = screenFrame.origin.x + screenFrame.width
-            let windowBottomPos = screenFrame.origin.y + screenFrame.height
-            let windowTopPos = screenFrame.origin.y
-            
-            let fullScreenFrame = screen.frameIncludingDockAndMenu()
-            let menuBarHeight = NSApplication.shared.mainMenu!.menuBarHeight
-            let dockHeight = fullScreenFrame.height - screenFrame.height - menuBarHeight
-            
-            // We need to set the origin of the mouse pointer to be the bottom because we're using
-            //  CGRects rather than NSRects here, and the origin is different
-            var mouseLocation = NSEvent.mouseLocation
-            mouseLocation.setOriginFromFrame(frame: fullScreenFrame)
-            
-            let isOnLeft = ( mouseLocation.x >= windowLeftPos && mouseLocation.x < windowLeftPos + margin )
-            let isOnRight = ( mouseLocation.x <= windowRightPos && mouseLocation.x > windowRightPos - margin )
-            let isOnTop = ( mouseLocation.y >= windowTopPos && mouseLocation.y < windowTopPos + margin)
-            let isOnBottom = ( mouseLocation.y <= windowBottomPos && mouseLocation.y > windowBottomPos - margin )
-            let isTopLeft = isOnLeft && isOnTop
-            let isBottomLeft = isOnLeft && isOnBottom
-            let isTopRight = isOnRight && isOnTop
-            let isBottomRight = isOnRight && isOnBottom
-            let prevPositionList = self.positionList
-            
-//            print("top:\(isOnTop), bottom:\(isOnBottom), left:\(isOnLeft), right:\(isOnRight)")
-//            print("top left:\(isTopLeft), bottom left:\(isBottomLeft), top right:\(isTopRight), bottom right:\(isBottomRight)")
-            
-            var windowRect:CGRect? = nil
-            var overlayRect:CGRect? = nil
-            var animateWidth = false
-            var animateHeight = false
-            var fromLeft = false
-            var fromTop = false
-            var shouldResize = false
-            
-            // TOP LEFT
-            if isTopLeft {
-                let width = screenFrame.width / 2
-                let height = screenFrame.height / 2
-                windowRect = CGRect(x: windowLeftPos, y: windowTopPos, width: width, height: height)
-                overlayRect = CGRect(x: windowLeftPos, y: dockHeight, width: width, height: height)
-                animateWidth = true
-                fromLeft = true
-                animateHeight = true
-                fromTop = true
-            }
-                
-            // BOTTOM LEFT
-            else if isBottomLeft {
-                let width = screenFrame.width / 2
-                let height = screenFrame.height / 2
-                windowRect = CGRect(x: windowLeftPos, y: windowBottomPos, width: width, height: height)
-                overlayRect = CGRect(x: windowLeftPos, y: dockHeight, width: width, height: height)
-                animateWidth = true
-                fromLeft = true
-                animateHeight = true
-                fromTop = false
-            }
-                
-            // TOP RIGHT
-            else if isTopRight{
-                let width = screenFrame.width / 2
-                let height = screenFrame.height / 2
-                windowRect = CGRect(x: windowRightPos - width, y: windowTopPos - height, width: width, height: height)
-                overlayRect = CGRect(x: windowRightPos - width, y: dockHeight, width: width, height: height)
-                animateWidth = true
-                fromLeft = false
-                animateHeight = true
-                fromTop = true
-            }
-                
-            // BOTTOM RIGHT{
-            else if isBottomRight {
-                let width = screenFrame.width / 2
-                let height = screenFrame.height / 2
-                windowRect = CGRect(x: windowRightPos - width, y: windowBottomPos, width: width, height: height)
-                overlayRect = CGRect(x: windowRightPos - width, y: dockHeight, width: width, height: height)
-                animateWidth = true
-                fromLeft = false
-                animateHeight = true
-                fromTop = false
-            }
-            
-            // LEFT SIDE
-            else if isOnLeft {
-                let width = screenFrame.width / 2
-                let height = screenFrame.height
-                windowRect = CGRect(x: windowLeftPos, y: windowTopPos, width: width, height: height)
-                overlayRect = CGRect(x: windowLeftPos, y: dockHeight, width: width, height: height)
-                animateWidth = true
-                fromLeft = true
-                animateHeight = false
-            }
-            
-            // RIGHT SIDE
-            else if isOnRight {
-                let width = screenFrame.width / 2
-                let height = screenFrame.height
-                windowRect = CGRect(x: windowRightPos - width, y: windowTopPos, width: width, height: height)
-                overlayRect = CGRect(x: windowRightPos - width, y: dockHeight, width: width, height: height)
-                animateWidth = true
-                fromLeft = false
-                animateHeight = false
-            }
-            
-            // TOP SIDE
-            else if isOnTop{
-                let width = screenFrame.width
-                let height = screenFrame.height
-                windowRect = CGRect(x: windowLeftPos, y: windowTopPos, width: width, height: height)
-                overlayRect = CGRect(x: windowLeftPos, y: dockHeight, width: width, height: height)
-                animateWidth = false
-                fromLeft = true
-                animateHeight = true
-                fromTop = true
-            }
-            
-            // BOTTOM SIDE
-            else if isOnBottom{
-                let width = screenFrame.width
-                let height = screenFrame.height
-                windowRect = CGRect(x: windowLeftPos, y: windowTopPos, width: width, height: height)
-                overlayRect = CGRect(x: windowLeftPos, y: dockHeight, width: width, height: height)
-                animateWidth = false
-                fromLeft = true
-                animateHeight = true
-                fromTop = false
-            }
-            
-            self.positionList = [isOnLeft, isOnRight, isOnTop, isOnBottom, isTopLeft, isTopRight, isBottomLeft, isBottomRight]
-            shouldResize = ( isOnLeft || isOnRight || isOnTop || isOnBottom )
-            if ( overlayRect != nil && (shouldResize && !self.windowPreviewSnapped || self.positionList != prevPositionList) ){
-                let convertedRect = screen.backingAlignedRect(overlayRect!, options: AlignmentOptions.alignAllEdgesInward)
-                self.showOverlayWindow(frame: convertedRect, animateWidth: animateWidth, fromLeft: fromLeft, animateHeight: animateHeight, fromTop: fromTop)
-                self.windowToResize = window
-            }else if( !shouldResize ){
-                self.cancelOverlayAnimation()
-                self.hideOverlayWindow()
-            }
-            
-            self.windowPreviewSnapped = shouldResize
-            if let windowRect = windowRect {
-                self.newWindowFrame = screen.backingAlignedRect(windowRect, options: AlignmentOptions.alignAllEdgesInward)
-            }
-        }
+//        if let window = window, let screen = TRWindowManager.getScreenMouseIsOn(){
+//            
+//            // Listen for mouseup events so we know when the drag has finished
+//            if self.mouseupEventHandler == nil{
+//                self.mouseupEventHandler = GlobalEventMonitor(mask: NSEvent.EventTypeMask.leftMouseUp, handler: self.mouseupEvent(event:))
+//                self.mouseupEventHandler?.start()
+//            }
+//            
+//            let screenFrame = screen.frameWithoutDockOrMenu()
+//            let margin:CGFloat = screenFrame.width * 0.02
+//            let windowLeftPos = screenFrame.origin.x
+//            let windowRightPos = screenFrame.origin.x + screenFrame.width
+//            let windowBottomPos = screenFrame.origin.y + screenFrame.height
+//            let windowTopPos = screenFrame.origin.y
+//            
+//            let fullScreenFrame = screen.frameIncludingDockAndMenu()
+//            let menuBarHeight = NSApplication.shared.mainMenu!.menuBarHeight
+//            let dockHeight = fullScreenFrame.height - screenFrame.height - menuBarHeight
+//            
+//            // We need to set the origin of the mouse pointer to be the bottom because we're using
+//            //  CGRects rather than NSRects here, and the origin is different
+//            var mouseLocation = NSEvent.mouseLocation
+//            mouseLocation.setOriginFromFrame(frame: fullScreenFrame)
+//            
+//            let isOnLeft = ( mouseLocation.x >= windowLeftPos && mouseLocation.x < windowLeftPos + margin )
+//            let isOnRight = ( mouseLocation.x <= windowRightPos && mouseLocation.x > windowRightPos - margin )
+//            let isOnTop = ( mouseLocation.y >= windowTopPos && mouseLocation.y < windowTopPos + margin)
+//            let isOnBottom = ( mouseLocation.y <= windowBottomPos && mouseLocation.y > windowBottomPos - margin )
+//            let isTopLeft = isOnLeft && isOnTop
+//            let isBottomLeft = isOnLeft && isOnBottom
+//            let isTopRight = isOnRight && isOnTop
+//            let isBottomRight = isOnRight && isOnBottom
+//            let prevPositionList = self.positionList
+//            
+////            print("top:\(isOnTop), bottom:\(isOnBottom), left:\(isOnLeft), right:\(isOnRight)")
+////            print("top left:\(isTopLeft), bottom left:\(isBottomLeft), top right:\(isTopRight), bottom right:\(isBottomRight)")
+//            
+//            var windowRect:CGRect? = nil
+//            var overlayRect:CGRect? = nil
+//            var animateWidth = false
+//            var animateHeight = false
+//            var fromLeft = false
+//            var fromTop = false
+//            var shouldResize = false
+//            
+//            // TOP LEFT
+//            if isTopLeft {
+//                let width = screenFrame.width / 2
+//                let height = screenFrame.height / 2
+//                windowRect = CGRect(x: windowLeftPos, y: windowTopPos, width: width, height: height)
+//                overlayRect = CGRect(x: windowLeftPos, y: dockHeight, width: width, height: height)
+//                animateWidth = true
+//                fromLeft = true
+//                animateHeight = true
+//                fromTop = true
+//            }
+//                
+//            // BOTTOM LEFT
+//            else if isBottomLeft {
+//                let width = screenFrame.width / 2
+//                let height = screenFrame.height / 2
+//                windowRect = CGRect(x: windowLeftPos, y: windowBottomPos, width: width, height: height)
+//                overlayRect = CGRect(x: windowLeftPos, y: dockHeight, width: width, height: height)
+//                animateWidth = true
+//                fromLeft = true
+//                animateHeight = true
+//                fromTop = false
+//            }
+//                
+//            // TOP RIGHT
+//            else if isTopRight{
+//                let width = screenFrame.width / 2
+//                let height = screenFrame.height / 2
+//                windowRect = CGRect(x: windowRightPos - width, y: windowTopPos - height, width: width, height: height)
+//                overlayRect = CGRect(x: windowRightPos - width, y: dockHeight, width: width, height: height)
+//                animateWidth = true
+//                fromLeft = false
+//                animateHeight = true
+//                fromTop = true
+//            }
+//                
+//            // BOTTOM RIGHT{
+//            else if isBottomRight {
+//                let width = screenFrame.width / 2
+//                let height = screenFrame.height / 2
+//                windowRect = CGRect(x: windowRightPos - width, y: windowBottomPos, width: width, height: height)
+//                overlayRect = CGRect(x: windowRightPos - width, y: dockHeight, width: width, height: height)
+//                animateWidth = true
+//                fromLeft = false
+//                animateHeight = true
+//                fromTop = false
+//            }
+//            
+//            // LEFT SIDE
+//            else if isOnLeft {
+//                let width = screenFrame.width / 2
+//                let height = screenFrame.height
+//                windowRect = CGRect(x: windowLeftPos, y: windowTopPos, width: width, height: height)
+//                overlayRect = CGRect(x: windowLeftPos, y: dockHeight, width: width, height: height)
+//                animateWidth = true
+//                fromLeft = true
+//                animateHeight = false
+//            }
+//            
+//            // RIGHT SIDE
+//            else if isOnRight {
+//                let width = screenFrame.width / 2
+//                let height = screenFrame.height
+//                windowRect = CGRect(x: windowRightPos - width, y: windowTopPos, width: width, height: height)
+//                overlayRect = CGRect(x: windowRightPos - width, y: dockHeight, width: width, height: height)
+//                animateWidth = true
+//                fromLeft = false
+//                animateHeight = false
+//            }
+//            
+//            // TOP SIDE
+//            else if isOnTop{
+//                let width = screenFrame.width
+//                let height = screenFrame.height
+//                windowRect = CGRect(x: windowLeftPos, y: windowTopPos, width: width, height: height)
+//                overlayRect = CGRect(x: windowLeftPos, y: dockHeight, width: width, height: height)
+//                animateWidth = false
+//                fromLeft = true
+//                animateHeight = true
+//                fromTop = true
+//            }
+//            
+//            // BOTTOM SIDE
+//            else if isOnBottom{
+//                let width = screenFrame.width
+//                let height = screenFrame.height
+//                windowRect = CGRect(x: windowLeftPos, y: windowTopPos, width: width, height: height)
+//                overlayRect = CGRect(x: windowLeftPos, y: dockHeight, width: width, height: height)
+//                animateWidth = false
+//                fromLeft = true
+//                animateHeight = true
+//                fromTop = false
+//            }
+//            
+//            self.positionList = [isOnLeft, isOnRight, isOnTop, isOnBottom, isTopLeft, isTopRight, isBottomLeft, isBottomRight]
+//            shouldResize = ( isOnLeft || isOnRight || isOnTop || isOnBottom )
+//            if ( overlayRect != nil && (shouldResize && !self.windowPreviewSnapped || self.positionList != prevPositionList) ){
+//                let convertedRect = screen.backingAlignedRect(overlayRect!, options: AlignmentOptions.alignAllEdgesInward)
+//                self.showOverlayWindow(frame: convertedRect, animateWidth: animateWidth, fromLeft: fromLeft, animateHeight: animateHeight, fromTop: fromTop)
+//                self.windowToResize = window
+//            }else if( !shouldResize ){
+//                self.cancelOverlayAnimation()
+//                self.hideOverlayWindow()
+//            }
+//            
+//            self.windowPreviewSnapped = shouldResize
+//            if let windowRect = windowRect {
+//                self.newWindowFrame = screen.backingAlignedRect(windowRect, options: AlignmentOptions.alignAllEdgesInward)
+//            }
+//        }
     }
     
     private func windowFinishedMoving(window: SIWindow?){
