@@ -91,4 +91,10 @@ class TRFileManager: TRManagerBase {
             return .none
         }
     }
+    
+    func listenToFolder(fullPath:String, callback:@escaping ([FileEvent])->()) -> Witness {
+        return Witness(paths: [fullPath], flags: .FileEvents, latency: 0.3) { events in
+            callback(events)
+        }
+    }
 }

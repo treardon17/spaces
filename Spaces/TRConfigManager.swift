@@ -14,6 +14,7 @@ class TRConfigManager: TRManagerBase{
     let appDirectory = "\(NSHomeDirectory())/.spaces"
     let configFileName = "config.json"
     var config:JSON!
+    private var witnessListener:Witness?
     
     private var _sizes = [String:TRWindowSize]()
     var sizes:[String:TRWindowSize] {
@@ -30,8 +31,15 @@ class TRConfigManager: TRManagerBase{
     
     override init() {
         super.init()
-        self.createAppFolderIfNeeded()
-        self.createAppFileIfNeeded()
+        self.setupConfig()
+        self.listenToConfigChanges()
+    }
+    
+    func setupConfig() {
+        if (!TRFileManager.shared.fileExists(fullPath: self.configPath)) {
+            self.config = self.getDefaultConfig()
+            self.saveConfig()
+        }
         self.loadConfig()
     }
     
@@ -60,6 +68,12 @@ class TRConfigManager: TRManagerBase{
             self.config = self.getDefaultConfig()
         }
         self.generateSizesFromConfig()
+    }
+    
+    func listenToConfigChanges() {
+        self.witnessListener = TRFileManager.shared.listenToFolder(fullPath: self.configPath) { (events) in
+            self.setupConfig()
+        }
     }
     
     func getCGFloatFromJSON(json:JSON, nullable: Bool) -> CGFloat? {

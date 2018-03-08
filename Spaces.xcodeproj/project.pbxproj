@@ -10,6 +10,9 @@
 		2DF4372DC378F199659448E0 /* Pods_SpacesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A0D5DD28C3D3496C5652397 /* Pods_SpacesTests.framework */; };
 		562C3443F0D3FA536B98C37B /* Pods_SpacesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2CE2C3806872CB76FCC6C20 /* Pods_SpacesUITests.framework */; };
 		AE4A52369523218154EEB590 /* Pods_Spaces.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9585383CF8E2857A14E5A626 /* Pods_Spaces.framework */; };
+		C30A40E520511B65006BBF54 /* Witness.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30A40E220511B65006BBF54 /* Witness.swift */; };
+		C30A40E620511B65006BBF54 /* FileEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30A40E320511B65006BBF54 /* FileEvent.swift */; };
+		C30A40E720511B65006BBF54 /* EventStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30A40E420511B65006BBF54 /* EventStream.swift */; };
 		C350B3971F286AD00008F0E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C350B3961F286AD00008F0E2 /* AppDelegate.swift */; };
 		C350B3991F286AD00008F0E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C350B3981F286AD00008F0E2 /* ViewController.swift */; };
 		C350B39B1F286AD00008F0E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C350B39A1F286AD00008F0E2 /* Assets.xcassets */; };
@@ -61,6 +64,9 @@
 		992C82354648A7403B6A1317 /* Pods-SpacesUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpacesUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpacesUITests/Pods-SpacesUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A611B9BD48C3346647A73A79 /* Pods-SpacesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpacesUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpacesUITests/Pods-SpacesUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C2CE2C3806872CB76FCC6C20 /* Pods_SpacesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpacesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C30A40E220511B65006BBF54 /* Witness.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Witness.swift; sourceTree = "<group>"; };
+		C30A40E320511B65006BBF54 /* FileEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileEvent.swift; sourceTree = "<group>"; };
+		C30A40E420511B65006BBF54 /* EventStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventStream.swift; sourceTree = "<group>"; };
 		C350B3931F286AD00008F0E2 /* Spaces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spaces.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C350B3961F286AD00008F0E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C350B3981F286AD00008F0E2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +136,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C30A40E820511B6A006BBF54 /* Witness */ = {
+			isa = PBXGroup;
+			children = (
+				C30A40E420511B65006BBF54 /* EventStream.swift */,
+				C30A40E320511B65006BBF54 /* FileEvent.swift */,
+				C30A40E220511B65006BBF54 /* Witness.swift */,
+			);
+			name = Witness;
+			sourceTree = "<group>";
+		};
 		C350B38A1F286AD00008F0E2 = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +171,7 @@
 		C350B3951F286AD00008F0E2 /* Spaces */ = {
 			isa = PBXGroup;
 			children = (
+				C30A40E820511B6A006BBF54 /* Witness */,
 				C3A07D5E1F30380C00D4E285 /* Utility */,
 				C3A07D571F2F033A00D4E285 /* Extensions */,
 				C38E876A1F286C2C0010BD4C /* Managers */,
@@ -561,6 +578,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C30A40E620511B65006BBF54 /* FileEvent.swift in Sources */,
 				C3F3BDF1204C664400CE96EA /* TRFileManager.swift in Sources */,
 				C3A07D3B1F2C038900D4E285 /* TROverlayWindow.swift in Sources */,
 				C3D8D4011F29B25F00845A2E /* TRManagerBase.swift in Sources */,
@@ -573,7 +591,9 @@
 				C3A07D9B1F32FCF900D4E285 /* TRWindowSize.swift in Sources */,
 				C3A07D561F2F033400D4E285 /* CGRect.swift in Sources */,
 				C3F3BDF3204CF51B00CE96EA /* TRConfigManager.swift in Sources */,
+				C30A40E520511B65006BBF54 /* Witness.swift in Sources */,
 				C3A07D971F319A3C00D4E285 /* CGPoint.swift in Sources */,
+				C30A40E720511B65006BBF54 /* EventStream.swift in Sources */,
 				C3A07D5D1F30380500D4E285 /* Logging.swift in Sources */,
 				C3A07D591F2F07B800D4E285 /* NSRect.swift in Sources */,
 				C3D8D4051F29C69200845A2E /* TRApplication.swift in Sources */,
