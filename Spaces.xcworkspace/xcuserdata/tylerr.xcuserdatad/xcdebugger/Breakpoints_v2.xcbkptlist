@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Spaces/TRFileManager.swift"
-            timestampString = "541971589.324839"
+            timestampString = "542218775.051155"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "39"
@@ -26,13 +26,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Spaces/TRConfigManager.swift"
-            timestampString = "541971589.324894"
+            timestampString = "542046410.045821"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "loadConfig()"
-            landmarkType = "7">
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "TRConfigManager"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Spaces/TRConfigManager.swift"
-            timestampString = "541971672.4446059"
+            timestampString = "542046410.0458699"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
             landmarkName = "saveConfig()"
             landmarkType = "7">
          </BreakpointContent>

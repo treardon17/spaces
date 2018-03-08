@@ -1,4 +1,4 @@
-//
+//
 //  TRHotKey.swift
 //  Spaces
 //
