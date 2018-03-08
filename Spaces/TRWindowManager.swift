@@ -20,6 +20,7 @@ class TRWindowManager: TRManagerBase{
     var newWindowFrame: CGRect?
     var windowToResize: SIWindow?
     var positionList = [Bool]()
+    private var configListenerID:String?
     
     // Sizers
     var sizers = [TRWindowSizer]()
@@ -53,10 +54,16 @@ class TRWindowManager: TRManagerBase{
         // Initializations
         self.setupListeners()
         self.initSizers()
+        self.configListenerID = TRConfigManager.shared.addConfigListener(callback: self.updateSizers(events:))
     }
     
     deinit {
         self.removeListeners()
+    }
+    
+    private func updateSizers(events:[FileEvent]) {
+        self.deinitSizers()
+        self.initSizers()
     }
     
     private func initSizers() {
@@ -71,6 +78,14 @@ class TRWindowManager: TRManagerBase{
                 }
             }
         }
+    }
+    
+    private func deinitSizers() {
+        for sizer in self.sizers{
+//            print("retain count is:", CFGetRetainCount(sizer))
+            sizer.destroy()
+        }
+        self.sizers.removeAll()
     }
     
     private func setupListeners(){

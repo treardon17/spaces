@@ -1,4 +1,4 @@
-//
+//
 //  TRWindowSizer.swift
 //  Spaces
 //
@@ -32,6 +32,10 @@ class TRWindowSizer: NSObject{
     }
     
     deinit {
+        self.destroy()
+    }
+    
+    func destroy() {
         self.windowSize = nil
         self.frame = nil
         if let hotkey = self.hotkey {

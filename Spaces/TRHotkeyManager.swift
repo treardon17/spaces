@@ -24,6 +24,9 @@ class TRHotKeyManager{
     }
     
     func removeHotKey(identifier: String) {
+        if let hotkey = self.hotkeyMap[identifier] {
+            hotkey.unregister()
+        }
         self.hotkeyMap[identifier] = nil
     }
     

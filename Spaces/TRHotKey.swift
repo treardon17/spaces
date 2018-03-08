@@ -1,5 +1,5 @@
-//
-//  HotKeyManager.swift
+//
+//  TRHotKey.swift
 //  Spaces
 //
 //  Created by Tyler Reardon on 7/26/17.
@@ -22,7 +22,6 @@ class TRHotKey: NSObject{
         get { return self._action }
         set(val) {
             if let val = val{
-                self.unregister()
                 self._action = val
                 self.registerShortcut(characters: self.characters, modifiers: self.modifiers, identifier: self.identifier)
             } else {

@@ -15,6 +15,7 @@ class TRConfigManager: TRManagerBase{
     let configFileName = "config.json"
     var config:JSON!
     private var witnessListener:Witness?
+    private var configListeners = [String:([FileEvent])->()]()
     
     private var _sizes = [String:TRWindowSize]()
     var sizes:[String:TRWindowSize] {
@@ -73,6 +74,23 @@ class TRConfigManager: TRManagerBase{
     func listenToConfigChanges() {
         self.witnessListener = TRFileManager.shared.listenToFolder(fullPath: self.configPath) { (events) in
             self.setupConfig()
+            self.alertConfigListeners(events: events)
+        }
+    }
+    
+    func addConfigListener(callback:@escaping ([FileEvent]) -> ()) -> String {
+        let uuid = UUID().uuidString
+        self.configListeners[uuid] = callback
+        return uuid
+    }
+    
+    func removeConfigListener(id:String) {
+        self.configListeners[id] = nil
+    }
+    
+    func alertConfigListeners(events:[FileEvent]) {
+        for (_, value) in self.configListeners{
+            value(events)
         }
     }
     
