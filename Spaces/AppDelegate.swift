@@ -22,7 +22,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.syncManager.setupSync()
         self.statusBarManager.setupMenu()
     }
-
     
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application

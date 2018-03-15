@@ -14,6 +14,18 @@ class TRStatusBarManager:TRManagerBase {
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
     
     func setupMenu() {
+        self.initButton()
+        
+        let menu = NSMenu()
+        
+        menu.addItem(NSMenuItem(title: "Print Quote", action: #selector(self.printQuote(_:)), keyEquivalent: "P"))
+        menu.addItem(NSMenuItem.separator())
+        menu.addItem(NSMenuItem(title: "Quit Spacework", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
+        
+        statusItem.menu = menu
+    }
+    
+    func initButton() {
         if let button = self.statusItem.button {
             let image = NSImage(named:NSImage.Name("StatusBarButtonImage"))
             let imageWidth = image?.size.width
