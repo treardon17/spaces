@@ -8,23 +8,23 @@
 
 import Cocoa
 import Silica
+import SwiftyDropbox
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-    let statusItem:NSStatusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength);
-    var darkModeOn:Bool = true;
-    var window:TROverlayWindow? = nil;
-
+    // Managers
+    let windowManager = TRWindowManager.shared
+    let configManager = TRConfigManager.shared
+    let syncManager = TRSyncManager.shared
+    let statusBarManager = TRStatusBarManager.shared
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        _ = TRWindowManager.shared
-        _ = TRConfigManager.shared
+        self.syncManager.setupSync()
+        self.statusBarManager.setupMenu()
     }
-
+    
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
-
-
 }
 
