@@ -16,6 +16,7 @@
 		C30A40EA205A2A72006BBF54 /* TRSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30A40E9205A2A72006BBF54 /* TRSyncManager.swift */; };
 		C30A40EB205A2AE3006BBF54 /* SwiftyDropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C30A40EC205A2AE3006BBF54 /* SwiftyDropbox.framework */; };
 		C30A40EE205A2D53006BBF54 /* TRDropbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30A40ED205A2D53006BBF54 /* TRDropbox.swift */; };
+		C30A40F1205A3D0F006BBF54 /* TRStatusBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30A40F0205A3D0F006BBF54 /* TRStatusBarManager.swift */; };
 		C350B3971F286AD00008F0E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C350B3961F286AD00008F0E2 /* AppDelegate.swift */; };
 		C350B3991F286AD00008F0E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C350B3981F286AD00008F0E2 /* ViewController.swift */; };
 		C350B39B1F286AD00008F0E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C350B39A1F286AD00008F0E2 /* Assets.xcassets */; };
@@ -73,6 +74,7 @@
 		C30A40E9205A2A72006BBF54 /* TRSyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRSyncManager.swift; sourceTree = "<group>"; };
 		C30A40EC205A2AE3006BBF54 /* SwiftyDropbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyDropbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C30A40ED205A2D53006BBF54 /* TRDropbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRDropbox.swift; sourceTree = "<group>"; };
+		C30A40F0205A3D0F006BBF54 /* TRStatusBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRStatusBarManager.swift; sourceTree = "<group>"; };
 		C350B3931F286AD00008F0E2 /* Spaces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spaces.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C350B3961F286AD00008F0E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C350B3981F286AD00008F0E2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				C3F3BDF0204C664400CE96EA /* TRFileManager.swift */,
 				C3F3BDF2204CF51B00CE96EA /* TRConfigManager.swift */,
 				C30A40E9205A2A72006BBF54 /* TRSyncManager.swift */,
+				C30A40F0205A3D0F006BBF54 /* TRStatusBarManager.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -613,6 +616,7 @@
 				C38E876C1F286C480010BD4C /* TRWindowManager.swift in Sources */,
 				C3A07D9B1F32FCF900D4E285 /* TRWindowSize.swift in Sources */,
 				C3A07D561F2F033400D4E285 /* CGRect.swift in Sources */,
+				C30A40F1205A3D0F006BBF54 /* TRStatusBarManager.swift in Sources */,
 				C3F3BDF3204CF51B00CE96EA /* TRConfigManager.swift in Sources */,
 				C30A40E520511B65006BBF54 /* Witness.swift in Sources */,
 				C3A07D971F319A3C00D4E285 /* CGPoint.swift in Sources */,
