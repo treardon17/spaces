@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C7056EF2D39B3BCE6CDFF668E80D8AB8"
+               BlueprintIdentifier = "0B9BB1AF671EA9F0B3F0FABCDCD5677C"
                BlueprintName = "Silica"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "Silica.framework">

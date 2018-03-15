@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftyJSON
+import CloudKit
 
 class TRConfigManager: TRManagerBase{
     static let shared = TRConfigManager()
