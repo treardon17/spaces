@@ -13,6 +13,9 @@
 		C30A40E520511B65006BBF54 /* Witness.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30A40E220511B65006BBF54 /* Witness.swift */; };
 		C30A40E620511B65006BBF54 /* FileEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30A40E320511B65006BBF54 /* FileEvent.swift */; };
 		C30A40E720511B65006BBF54 /* EventStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30A40E420511B65006BBF54 /* EventStream.swift */; };
+		C30A40EA205A2A72006BBF54 /* TRSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30A40E9205A2A72006BBF54 /* TRSyncManager.swift */; };
+		C30A40EB205A2AE3006BBF54 /* SwiftyDropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C30A40EC205A2AE3006BBF54 /* SwiftyDropbox.framework */; };
+		C30A40EE205A2D53006BBF54 /* TRDropbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30A40ED205A2D53006BBF54 /* TRDropbox.swift */; };
 		C350B3971F286AD00008F0E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C350B3961F286AD00008F0E2 /* AppDelegate.swift */; };
 		C350B3991F286AD00008F0E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C350B3981F286AD00008F0E2 /* ViewController.swift */; };
 		C350B39B1F286AD00008F0E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C350B39A1F286AD00008F0E2 /* Assets.xcassets */; };
@@ -67,6 +70,9 @@
 		C30A40E220511B65006BBF54 /* Witness.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Witness.swift; sourceTree = "<group>"; };
 		C30A40E320511B65006BBF54 /* FileEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileEvent.swift; sourceTree = "<group>"; };
 		C30A40E420511B65006BBF54 /* EventStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventStream.swift; sourceTree = "<group>"; };
+		C30A40E9205A2A72006BBF54 /* TRSyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRSyncManager.swift; sourceTree = "<group>"; };
+		C30A40EC205A2AE3006BBF54 /* SwiftyDropbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyDropbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C30A40ED205A2D53006BBF54 /* TRDropbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRDropbox.swift; sourceTree = "<group>"; };
 		C350B3931F286AD00008F0E2 /* Spaces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spaces.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C350B3961F286AD00008F0E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C350B3981F286AD00008F0E2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C30A40EB205A2AE3006BBF54 /* SwiftyDropbox.framework in Frameworks */,
 				AE4A52369523218154EEB590 /* Pods_Spaces.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -129,6 +136,7 @@
 		8BB90DA4AECCBABEA896E997 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C30A40EC205A2AE3006BBF54 /* SwiftyDropbox.framework */,
 				9585383CF8E2857A14E5A626 /* Pods_Spaces.framework */,
 				8A0D5DD28C3D3496C5652397 /* Pods_SpacesTests.framework */,
 				C2CE2C3806872CB76FCC6C20 /* Pods_SpacesUITests.framework */,
@@ -144,6 +152,14 @@
 				C30A40E220511B65006BBF54 /* Witness.swift */,
 			);
 			name = Witness;
+			sourceTree = "<group>";
+		};
+		C30A40EF205A2E86006BBF54 /* Sync */ = {
+			isa = PBXGroup;
+			children = (
+				C30A40ED205A2D53006BBF54 /* TRDropbox.swift */,
+			);
+			name = Sync;
 			sourceTree = "<group>";
 		};
 		C350B38A1F286AD00008F0E2 = {
@@ -171,6 +187,7 @@
 		C350B3951F286AD00008F0E2 /* Spaces */ = {
 			isa = PBXGroup;
 			children = (
+				C30A40EF205A2E86006BBF54 /* Sync */,
 				C30A40E820511B6A006BBF54 /* Witness */,
 				C3A07D5E1F30380C00D4E285 /* Utility */,
 				C3A07D571F2F033A00D4E285 /* Extensions */,
@@ -218,6 +235,7 @@
 				C377A983203BACBD001E2E6C /* TRHotkeyManager.swift */,
 				C3F3BDF0204C664400CE96EA /* TRFileManager.swift */,
 				C3F3BDF2204CF51B00CE96EA /* TRConfigManager.swift */,
+				C30A40E9205A2A72006BBF54 /* TRSyncManager.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -454,6 +472,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Spaces/Pods-Spaces-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CCNLaunchAtLoginItem/CCNLaunchAtLoginItem.framework",
 				"${BUILT_PRODUCTS_DIR}/CCNPreferencesWindowController/CCNPreferencesWindowController.framework",
 				"${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework",
@@ -465,10 +484,12 @@
 				"${BUILT_PRODUCTS_DIR}/Silica/Silica.framework",
 				"${PODS_ROOT}/Sparkle/Sparkle.framework",
 				"${PODS_ROOT}/Sparkle/Sparkle.framework.dSYM",
+				"${BUILT_PRODUCTS_DIR}/SwiftyDropbox/SwiftyDropbox.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CCNLaunchAtLoginItem.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CCNPreferencesWindowController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cartography.framework",
@@ -480,6 +501,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Silica.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sparkle.framework",
 				"${DWARF_DSYM_FOLDER_PATH}/Sparkle.framework.dSYM",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyDropbox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -584,6 +606,7 @@
 				C3D8D4011F29B25F00845A2E /* TRManagerBase.swift in Sources */,
 				C350B3991F286AD00008F0E2 /* ViewController.swift in Sources */,
 				C3A07D541F2E6AB000D4E285 /* GlobalEventsMonitor.swift in Sources */,
+				C30A40EE205A2D53006BBF54 /* TRDropbox.swift in Sources */,
 				C350B3971F286AD00008F0E2 /* AppDelegate.swift in Sources */,
 				C377A984203BACBD001E2E6C /* TRHotkeyManager.swift in Sources */,
 				C3A07D991F32F35400D4E285 /* TRWindowSizer.swift in Sources */,
@@ -594,6 +617,7 @@
 				C30A40E520511B65006BBF54 /* Witness.swift in Sources */,
 				C3A07D971F319A3C00D4E285 /* CGPoint.swift in Sources */,
 				C30A40E720511B65006BBF54 /* EventStream.swift in Sources */,
+				C30A40EA205A2A72006BBF54 /* TRSyncManager.swift in Sources */,
 				C3A07D5D1F30380500D4E285 /* Logging.swift in Sources */,
 				C3A07D591F2F07B800D4E285 /* NSRect.swift in Sources */,
 				C3D8D4051F29C69200845A2E /* TRApplication.swift in Sources */,
@@ -692,7 +716,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -742,7 +766,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

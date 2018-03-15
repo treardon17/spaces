@@ -8,6 +8,7 @@
 
 import Cocoa
 import Silica
+import SwiftyDropbox
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -19,6 +20,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         _ = TRWindowManager.shared
         _ = TRConfigManager.shared
+        TRSyncManager.shared.setupSync()
+        
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

@@ -134,6 +134,7 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CCNLaunchAtLoginItem/CCNLaunchAtLoginItem.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CCNPreferencesWindowController/CCNPreferencesWindowController.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework"
@@ -145,9 +146,11 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Silica/Silica.framework"
   install_framework "${PODS_ROOT}/Sparkle/Sparkle.framework"
   install_dsym "${PODS_ROOT}/Sparkle/Sparkle.framework.dSYM"
+  install_framework "${BUILT_PRODUCTS_DIR}/SwiftyDropbox/SwiftyDropbox.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CCNLaunchAtLoginItem/CCNLaunchAtLoginItem.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CCNPreferencesWindowController/CCNPreferencesWindowController.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Cartography/Cartography.framework"
@@ -159,6 +162,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Silica/Silica.framework"
   install_framework "${PODS_ROOT}/Sparkle/Sparkle.framework"
   install_dsym "${PODS_ROOT}/Sparkle/Sparkle.framework.dSYM"
+  install_framework "${BUILT_PRODUCTS_DIR}/SwiftyDropbox/SwiftyDropbox.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
