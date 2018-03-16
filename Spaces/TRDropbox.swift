@@ -10,6 +10,8 @@ import Foundation
 import SwiftyDropbox
 
 class TRDropbox: NSObject {
+    let newWindow = NSWindow(contentRect: NSMakeRect(0, 0, NSScreen.main!.frame.midX, NSScreen.main!.frame.midY), styleMask: [.closable, .fullSizeContentView, .titled, .miniaturizable, .fullScreen], backing: .buffered, defer: false)
+    
     func registerDropbox() {
         if (DropboxOAuthManager.sharedOAuthManager == nil) {
             DropboxClientsManager.setupWithAppKeyDesktop("slfx4exzmjw6sjf")
@@ -21,10 +23,13 @@ class TRDropbox: NSObject {
         let viewController = NSViewController()
         DropboxClientsManager.authorizeFromController(sharedWorkspace: NSWorkspace.shared, controller: viewController, openURL: { (url: URL) -> Void in NSWorkspace.shared.open(url)
         })
-        let window = NSWindow(contentRect: CGRect(x: 0, y:0, width: 300, height:300), styleMask: NSWindow.StyleMask.closable, backing: NSWindow.BackingStoreType.buffered, defer: true)
-        let windowController = NSWindowController(window: window)
-        windowController.loadWindow()
-        windowController.showWindow(self)
+
+        newWindow.title = "New Window"
+        newWindow.isOpaque = false
+        newWindow.center()
+        newWindow.isMovableByWindowBackground = true
+        newWindow.backgroundColor = NSColor.white // NSColor(calibratedHue: 0, saturation: 1.0, brightness: 0, alpha: 0.7)
+        newWindow.makeKeyAndOrderFront(nil)
     }
     
     @objc func handleGetURLEvent(_ event: NSAppleEventDescriptor?, replyEvent: NSAppleEventDescriptor?) {
