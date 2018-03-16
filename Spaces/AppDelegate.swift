@@ -19,7 +19,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let statusBarManager = TRStatusBarManager.shared
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        self.syncManager.setupSync()
         self.statusBarManager.setupMenu()
     }
     

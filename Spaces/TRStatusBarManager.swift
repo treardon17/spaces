@@ -8,6 +8,7 @@
 
 import Foundation
 import Cocoa
+import SwiftyDropbox
 
 class TRStatusBarManager:TRManagerBase {
     static let shared:TRStatusBarManager = TRStatusBarManager()
@@ -18,7 +19,10 @@ class TRStatusBarManager:TRManagerBase {
         
         let menu = NSMenu()
         
-        menu.addItem(NSMenuItem(title: "Print Quote", action: #selector(self.printQuote(_:)), keyEquivalent: "P"))
+        let dropbox = NSMenuItem(title: "Dropbox sign in", action: #selector(dropboxSignIn(_:)), keyEquivalent: "")
+        dropbox.target = self
+        menu.addItem(dropbox)
+        
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Quit Spacework", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
         
@@ -35,15 +39,13 @@ class TRStatusBarManager:TRManagerBase {
             let newImageHeight = newImageWidth * imageProp
             button.image = image
             button.image?.size = NSSize(width: newImageWidth, height: newImageHeight)
-            button.action = #selector(printQuote(_:))
+//            button.action = #selector(dropboxSignIn(_:))
             button.target = self
         }
     }
 
-    @objc func printQuote(_ sender: Any?) {
-        let quoteText = "Never put off until tomorrow what you can do the day after tomorrow."
-        let quoteAuthor = "Mark Twain"
-
-        print("\(quoteText) — \(quoteAuthor)")
+    @objc func dropboxSignIn(_ sender: Any?) {
+        print("Signing into Dropbox")
+        TRSyncManager.shared.setupSync()
     }
 }

@@ -17,9 +17,14 @@ class TRDropbox: NSObject {
         }
     }
     
-    func loginDropbox(controller:NSViewController) {
-        DropboxClientsManager.authorizeFromController(sharedWorkspace: NSWorkspace.shared, controller: controller, openURL: { (url: URL) -> Void in NSWorkspace.shared.open(url)
+    func loginDropbox() {
+        let viewController = NSViewController()
+        DropboxClientsManager.authorizeFromController(sharedWorkspace: NSWorkspace.shared, controller: viewController, openURL: { (url: URL) -> Void in NSWorkspace.shared.open(url)
         })
+        let window = NSWindow(contentRect: CGRect(x: 0, y:0, width: 300, height:300), styleMask: NSWindow.StyleMask.closable, backing: NSWindow.BackingStoreType.buffered, defer: true)
+        let windowController = NSWindowController(window: window)
+        windowController.loadWindow()
+        windowController.showWindow(self)
     }
     
     @objc func handleGetURLEvent(_ event: NSAppleEventDescriptor?, replyEvent: NSAppleEventDescriptor?) {
@@ -29,7 +34,7 @@ class TRDropbox: NSObject {
                 if let authResult = DropboxClientsManager.handleRedirectURL(url) {
                     switch authResult {
                     case .success:
-                        print("Success! User is logged into Dropbox.")
+                        print("Success! User is logged into Dropbox.", DropboxOAuthManager.sharedOAuthManager.getAllAccessTokens())
                     case .cancel:
                         print("Authorization flow was manually canceled by user!")
                     case .error(_, let description):

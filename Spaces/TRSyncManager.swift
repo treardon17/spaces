@@ -20,5 +20,6 @@ class TRSyncManager: TRManagerBase {
     
     func setupSync() {
         self.dropbox.registerDropbox()
+        self.dropbox.loginDropbox()
     }
 }
