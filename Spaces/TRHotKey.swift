@@ -49,6 +49,10 @@ class TRHotKey: NSObject{
     
     deinit {
         self.unregister()
+        self.characters = nil
+        self.modifiers = nil
+        self.actionIdentifier = nil
+        self.identifier = nil
     }
     
     /// Takes a list of characters and modifiers and completes the callback when those keys are pressed.
@@ -90,6 +94,7 @@ class TRHotKey: NSObject{
     func unregister() {
         if let hotkey = self.hotkey{
             hotkey.unregister()
+            self.hotkey = nil
         }
     }
     
