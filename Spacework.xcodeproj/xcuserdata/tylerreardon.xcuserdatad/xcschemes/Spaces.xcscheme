@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C350B3921F286AD00008F0E2"
-               BuildableName = "Spaces.app"
-               BlueprintName = "Spaces"
-               ReferencedContainer = "container:Spaces.xcodeproj">
+               BuildableName = "Spacework.app"
+               BlueprintName = "Spacework"
+               ReferencedContainer = "container:Spacework.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,9 +34,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C350B3A31F286AD00008F0E2"
-               BuildableName = "SpacesTests.xctest"
-               BlueprintName = "SpacesTests"
-               ReferencedContainer = "container:Spaces.xcodeproj">
+               BuildableName = "SpaceworkTests.xctest"
+               BlueprintName = "SpaceworkTests"
+               ReferencedContainer = "container:Spacework.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -44,9 +44,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C350B3AE1F286AD00008F0E2"
-               BuildableName = "SpacesUITests.xctest"
-               BlueprintName = "SpacesUITests"
-               ReferencedContainer = "container:Spaces.xcodeproj">
+               BuildableName = "SpaceworkUITests.xctest"
+               BlueprintName = "SpaceworkUITests"
+               ReferencedContainer = "container:Spacework.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -54,9 +54,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C350B3921F286AD00008F0E2"
-            BuildableName = "Spaces.app"
-            BlueprintName = "Spaces"
-            ReferencedContainer = "container:Spaces.xcodeproj">
+            BuildableName = "Spacework.app"
+            BlueprintName = "Spacework"
+            ReferencedContainer = "container:Spacework.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -78,9 +78,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C350B3921F286AD00008F0E2"
-            BuildableName = "Spaces.app"
-            BlueprintName = "Spaces"
-            ReferencedContainer = "container:Spaces.xcodeproj">
+            BuildableName = "Spacework.app"
+            BlueprintName = "Spacework"
+            ReferencedContainer = "container:Spacework.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -97,9 +97,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C350B3921F286AD00008F0E2"
-            BuildableName = "Spaces.app"
-            BlueprintName = "Spaces"
-            ReferencedContainer = "container:Spaces.xcodeproj">
+            BuildableName = "Spacework.app"
+            BlueprintName = "Spacework"
+            ReferencedContainer = "container:Spacework.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

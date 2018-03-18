@@ -81,10 +81,10 @@
 		C350B39A1F286AD00008F0E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C350B39D1F286AD00008F0E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C350B39F1F286AD00008F0E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C350B3A41F286AD00008F0E2 /* SpacesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpacesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C350B3A41F286AD00008F0E2 /* SpaceworkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpaceworkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C350B3A81F286AD00008F0E2 /* SpacesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacesTests.swift; sourceTree = "<group>"; };
 		C350B3AA1F286AD00008F0E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C350B3AF1F286AD00008F0E2 /* SpacesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpacesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C350B3AF1F286AD00008F0E2 /* SpaceworkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpaceworkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C350B3B31F286AD00008F0E2 /* SpacesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpacesUITests.swift; sourceTree = "<group>"; };
 		C350B3B51F286AD00008F0E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C377A983203BACBD001E2E6C /* TRHotkeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRHotkeyManager.swift; sourceTree = "<group>"; };
@@ -180,8 +180,8 @@
 			isa = PBXGroup;
 			children = (
 				C350B3931F286AD00008F0E2 /* Spaces.app */,
-				C350B3A41F286AD00008F0E2 /* SpacesTests.xctest */,
-				C350B3AF1F286AD00008F0E2 /* SpacesUITests.xctest */,
+				C350B3A41F286AD00008F0E2 /* SpaceworkTests.xctest */,
+				C350B3AF1F286AD00008F0E2 /* SpaceworkUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -277,9 +277,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C350B3921F286AD00008F0E2 /* Spaces */ = {
+		C350B3921F286AD00008F0E2 /* Spacework */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C350B3B81F286AD00008F0E2 /* Build configuration list for PBXNativeTarget "Spaces" */;
+			buildConfigurationList = C350B3B81F286AD00008F0E2 /* Build configuration list for PBXNativeTarget "Spacework" */;
 			buildPhases = (
 				D55A4B2648A4D4001B67C9AD /* [CP] Check Pods Manifest.lock */,
 				C350B38F1F286AD00008F0E2 /* Sources */,
@@ -292,14 +292,14 @@
 			);
 			dependencies = (
 			);
-			name = Spaces;
+			name = Spacework;
 			productName = Spaces;
 			productReference = C350B3931F286AD00008F0E2 /* Spaces.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C350B3A31F286AD00008F0E2 /* SpacesTests */ = {
+		C350B3A31F286AD00008F0E2 /* SpaceworkTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C350B3BB1F286AD00008F0E2 /* Build configuration list for PBXNativeTarget "SpacesTests" */;
+			buildConfigurationList = C350B3BB1F286AD00008F0E2 /* Build configuration list for PBXNativeTarget "SpaceworkTests" */;
 			buildPhases = (
 				C53E6950EF2D1EC552EC773E /* [CP] Check Pods Manifest.lock */,
 				C350B3A01F286AD00008F0E2 /* Sources */,
@@ -313,14 +313,14 @@
 			dependencies = (
 				C350B3A61F286AD00008F0E2 /* PBXTargetDependency */,
 			);
-			name = SpacesTests;
+			name = SpaceworkTests;
 			productName = SpacesTests;
-			productReference = C350B3A41F286AD00008F0E2 /* SpacesTests.xctest */;
+			productReference = C350B3A41F286AD00008F0E2 /* SpaceworkTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		C350B3AE1F286AD00008F0E2 /* SpacesUITests */ = {
+		C350B3AE1F286AD00008F0E2 /* SpaceworkUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C350B3BE1F286AD00008F0E2 /* Build configuration list for PBXNativeTarget "SpacesUITests" */;
+			buildConfigurationList = C350B3BE1F286AD00008F0E2 /* Build configuration list for PBXNativeTarget "SpaceworkUITests" */;
 			buildPhases = (
 				C576B01C6853A7B504E53BE5 /* [CP] Check Pods Manifest.lock */,
 				C350B3AB1F286AD00008F0E2 /* Sources */,
@@ -334,9 +334,9 @@
 			dependencies = (
 				C350B3B11F286AD00008F0E2 /* PBXTargetDependency */,
 			);
-			name = SpacesUITests;
+			name = SpaceworkUITests;
 			productName = SpacesUITests;
-			productReference = C350B3AF1F286AD00008F0E2 /* SpacesUITests.xctest */;
+			productReference = C350B3AF1F286AD00008F0E2 /* SpaceworkUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -371,7 +371,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C350B38E1F286AD00008F0E2 /* Build configuration list for PBXProject "Spaces" */;
+			buildConfigurationList = C350B38E1F286AD00008F0E2 /* Build configuration list for PBXProject "Spacework" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -384,9 +384,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C350B3921F286AD00008F0E2 /* Spaces */,
-				C350B3A31F286AD00008F0E2 /* SpacesTests */,
-				C350B3AE1F286AD00008F0E2 /* SpacesUITests */,
+				C350B3921F286AD00008F0E2 /* Spacework */,
+				C350B3A31F286AD00008F0E2 /* SpaceworkTests */,
+				C350B3AE1F286AD00008F0E2 /* SpaceworkUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -651,12 +651,12 @@
 /* Begin PBXTargetDependency section */
 		C350B3A61F286AD00008F0E2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C350B3921F286AD00008F0E2 /* Spaces */;
+			target = C350B3921F286AD00008F0E2 /* Spacework */;
 			targetProxy = C350B3A51F286AD00008F0E2 /* PBXContainerItemProxy */;
 		};
 		C350B3B11F286AD00008F0E2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C350B3921F286AD00008F0E2 /* Spaces */;
+			target = C350B3921F286AD00008F0E2 /* Spacework */;
 			targetProxy = C350B3B01F286AD00008F0E2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -830,7 +830,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Spaces.app/Contents/MacOS/Spaces";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Spacework.app/Contents/MacOS/Spacework";
 			};
 			name = Debug;
 		};
@@ -848,7 +848,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Spaces.app/Contents/MacOS/Spaces";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Spacework.app/Contents/MacOS/Spacework";
 			};
 			name = Release;
 		};
@@ -889,7 +889,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C350B38E1F286AD00008F0E2 /* Build configuration list for PBXProject "Spaces" */ = {
+		C350B38E1F286AD00008F0E2 /* Build configuration list for PBXProject "Spacework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C350B3B61F286AD00008F0E2 /* Debug */,
@@ -898,7 +898,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C350B3B81F286AD00008F0E2 /* Build configuration list for PBXNativeTarget "Spaces" */ = {
+		C350B3B81F286AD00008F0E2 /* Build configuration list for PBXNativeTarget "Spacework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C350B3B91F286AD00008F0E2 /* Debug */,
@@ -907,7 +907,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C350B3BB1F286AD00008F0E2 /* Build configuration list for PBXNativeTarget "SpacesTests" */ = {
+		C350B3BB1F286AD00008F0E2 /* Build configuration list for PBXNativeTarget "SpaceworkTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C350B3BC1F286AD00008F0E2 /* Debug */,
@@ -916,7 +916,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C350B3BE1F286AD00008F0E2 /* Build configuration list for PBXNativeTarget "SpacesUITests" */ = {
+		C350B3BE1F286AD00008F0E2 /* Build configuration list for PBXNativeTarget "SpaceworkUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C350B3BF1F286AD00008F0E2 /* Debug */,

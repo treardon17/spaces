@@ -12,11 +12,12 @@ import CloudKit
 
 class TRConfigManager: TRManagerBase{
     static let shared = TRConfigManager()
-    let appDirectory = "\(NSHomeDirectory())/.spaces"
+    let appDirectory = "\(NSHomeDirectory())/.spacework"
     let configFileName = "config.json"
     var config:JSON!
     private var witnessListener:Witness?
     private var configListeners = [String:([FileEvent])->()]()
+    private var notifyListeners = true
     
     private var _sizes = [String:TRWindowSize]()
     var sizes:[String:TRWindowSize] {
@@ -57,9 +58,11 @@ class TRConfigManager: TRManagerBase{
     
     func saveConfig() {
         if let configString = config.rawString() {
+            self.notifyListeners = false
             self.createAppFolderIfNeeded()
             self.createAppFileIfNeeded()
             TRFileManager.shared.writeFile(fullPath: "\(self.appDirectory)", fileName:self.configFileName, data:configString)
+            self.notifyListeners = true
         }
     }
     
@@ -90,8 +93,10 @@ class TRConfigManager: TRManagerBase{
     }
     
     func alertConfigListeners(events:[FileEvent]) {
-        for (_, value) in self.configListeners{
-            value(events)
+        if self.notifyListeners {
+            for (_, value) in self.configListeners{
+                value(events)
+            }
         }
     }
     

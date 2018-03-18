@@ -15,7 +15,6 @@ class TRSyncManager: TRManagerBase {
     
     override init() {
         super.init()
-        self.setupSync()
     }
     
     func setupSync() {
