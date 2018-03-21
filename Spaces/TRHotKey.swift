@@ -126,8 +126,6 @@ class TRHotKey: NSObject{
     
     func codeForCharacter(char: String) -> Int{
         switch char {
-        case "'":
-            return Int(Keycode.apostrophe)
         case "0":
             return Int(Keycode.zero)
         case "1":
@@ -196,10 +194,24 @@ class TRHotKey: NSObject{
             return Int(Keycode.w)
         case "x":
             return Int(Keycode.x)
-        case "y":
+        case "y":tt
             return Int(Keycode.y)
         case "z":
             return Int(Keycode.z)
+        case "'":
+            return Int(Keycode.apostrophe)
+        case ";":
+            return Int(Keycode.semicolon)
+        case ",":
+            return Int(Keycode.comma)
+        case ".":
+            return Int(Keycode.period)
+        case "-":
+            return Int(Keycode.minus)
+        case "=":
+            return Int(Keycode.equals)
+        case "\\":
+            return Int(Keycode.backslash)
         case "space":
             return Int(Keycode.space)
         case "enter":
