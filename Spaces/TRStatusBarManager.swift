@@ -13,18 +13,30 @@ import SwiftyDropbox
 class TRStatusBarManager:TRManagerBase {
     static let shared:TRStatusBarManager = TRStatusBarManager()
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
+    var dropboxMenuItem:NSMenuItem?
+    var loginMenuItem:NSMenuItem?
+    var quitMenuItem:NSMenuItem?
     
     func setupMenu() {
         self.initButton()
         
         let menu = NSMenu()
         
-        let dropbox = NSMenuItem(title: "Dropbox sign in", action: #selector(dropboxSignIn(_:)), keyEquivalent: "")
-        dropbox.target = self
-        menu.addItem(dropbox)
+        // DROPBOX LOGIN
+        self.dropboxMenuItem = NSMenuItem(title: "Dropbox sign in", action: #selector(dropboxSignIn(_:)), keyEquivalent: "")
+        self.dropboxMenuItem!.target = self
+        menu.addItem(self.dropboxMenuItem!)
         
         menu.addItem(NSMenuItem.separator())
-        menu.addItem(NSMenuItem(title: "Quit Spacework", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
+        let loginTitle = TRSettingsManager.shared.loginAtStartupEnabled ? "Run at startup" : "Disable run at start"
+        self.loginMenuItem = NSMenuItem(title: loginTitle, action: #selector(toggleStartupLogin(_:)), keyEquivalent: "")
+        self.loginMenuItem!.target = self
+        menu.addItem(self.loginMenuItem!)
+        
+        // QUIT
+        menu.addItem(NSMenuItem.separator())
+        self.quitMenuItem = NSMenuItem(title: "Quit Spacework", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
+        menu.addItem(self.quitMenuItem!)
         
         statusItem.menu = menu
     }
@@ -39,9 +51,14 @@ class TRStatusBarManager:TRManagerBase {
             let newImageHeight = newImageWidth * imageProp
             button.image = image
             button.image?.size = NSSize(width: newImageWidth, height: newImageHeight)
-//            button.action = #selector(dropboxSignIn(_:))
             button.target = self
         }
+    }
+    
+    @objc func toggleStartupLogin(_ sender: Any?) {
+        TRSettingsManager.shared.setLoginStartup(enabled: !TRSettingsManager.shared.loginAtStartupEnabled)
+        let loginTitle = TRSettingsManager.shared.loginAtStartupEnabled ? "Run at startup" : "Disable run at start"
+        self.loginMenuItem!.title = loginTitle
     }
 
     @objc func dropboxSignIn(_ sender: Any?) {

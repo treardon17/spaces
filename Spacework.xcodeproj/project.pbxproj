@@ -34,6 +34,9 @@
 		C3A07D971F319A3C00D4E285 /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A07D961F319A3C00D4E285 /* CGPoint.swift */; };
 		C3A07D991F32F35400D4E285 /* TRWindowSizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A07D981F32F35400D4E285 /* TRWindowSizer.swift */; };
 		C3A07D9B1F32FCF900D4E285 /* TRWindowSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A07D9A1F32FCF900D4E285 /* TRWindowSize.swift */; };
+		C3ACA5D3205F135400757F14 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3ACA5D2205F135400757F14 /* ServiceManagement.framework */; };
+		C3ACA5D6205F13B500757F14 /* SpaceworkHelper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = C3ACA5D1205F131900757F14 /* SpaceworkHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C3ACA5D820636BE200757F14 /* TRSettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ACA5D720636BE200757F14 /* TRSettingsManager.swift */; };
 		C3D8D4011F29B25F00845A2E /* TRManagerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D8D4001F29B25F00845A2E /* TRManagerBase.swift */; };
 		C3D8D4031F29C4EE00845A2E /* TRWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D8D4021F29C4EE00845A2E /* TRWindow.swift */; };
 		C3D8D4051F29C69200845A2E /* TRApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D8D4041F29C69200845A2E /* TRApplication.swift */; };
@@ -56,7 +59,27 @@
 			remoteGlobalIDString = C350B3921F286AD00008F0E2;
 			remoteInfo = Spaces;
 		};
+		C3ACA5D0205F131900757F14 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C3ACA5CC205F131800757F14 /* SpaceworkHelper.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C3ACA5B9205F131800757F14;
+			remoteInfo = SpaceworkHelper;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C3ACA5D5205F138A00757F14 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				C3ACA5D6205F13B500757F14 /* SpaceworkHelper.app in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		10F78C715E604C3E31143070 /* Pods-Spaces.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Spaces.release.xcconfig"; path = "Pods/Target Support Files/Pods-Spaces/Pods-Spaces.release.xcconfig"; sourceTree = "<group>"; };
@@ -75,7 +98,7 @@
 		C30A40EC205A2AE3006BBF54 /* SwiftyDropbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyDropbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C30A40ED205A2D53006BBF54 /* TRDropbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRDropbox.swift; sourceTree = "<group>"; };
 		C30A40F0205A3D0F006BBF54 /* TRStatusBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRStatusBarManager.swift; sourceTree = "<group>"; };
-		C350B3931F286AD00008F0E2 /* Spaces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spaces.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C350B3931F286AD00008F0E2 /* Spacework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spacework.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C350B3961F286AD00008F0E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C350B3981F286AD00008F0E2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C350B39A1F286AD00008F0E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -98,6 +121,10 @@
 		C3A07D961F319A3C00D4E285 /* CGPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
 		C3A07D981F32F35400D4E285 /* TRWindowSizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TRWindowSizer.swift; sourceTree = "<group>"; };
 		C3A07D9A1F32FCF900D4E285 /* TRWindowSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TRWindowSize.swift; sourceTree = "<group>"; };
+		C3ACA5CC205F131800757F14 /* SpaceworkHelper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SpaceworkHelper.xcodeproj; path = SpaceworkHelper/SpaceworkHelper.xcodeproj; sourceTree = "<group>"; };
+		C3ACA5D2205F135400757F14 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
+		C3ACA5D4205F136300757F14 /* Spacework.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Spacework.entitlements; sourceTree = "<group>"; };
+		C3ACA5D720636BE200757F14 /* TRSettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRSettingsManager.swift; sourceTree = "<group>"; };
 		C3D8D3F31F29AD9200845A2E /* Spaces-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Spaces-Bridging-Header.h"; sourceTree = "<group>"; };
 		C3D8D4001F29B25F00845A2E /* TRManagerBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TRManagerBase.swift; sourceTree = "<group>"; };
 		C3D8D4021F29C4EE00845A2E /* TRWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TRWindow.swift; sourceTree = "<group>"; };
@@ -111,6 +138,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3ACA5D3205F135400757F14 /* ServiceManagement.framework in Frameworks */,
 				C30A40EB205A2AE3006BBF54 /* SwiftyDropbox.framework in Frameworks */,
 				AE4A52369523218154EEB590 /* Pods_Spaces.framework in Frameworks */,
 			);
@@ -138,6 +166,7 @@
 		8BB90DA4AECCBABEA896E997 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C3ACA5D2205F135400757F14 /* ServiceManagement.framework */,
 				C30A40EC205A2AE3006BBF54 /* SwiftyDropbox.framework */,
 				9585383CF8E2857A14E5A626 /* Pods_Spaces.framework */,
 				8A0D5DD28C3D3496C5652397 /* Pods_SpacesTests.framework */,
@@ -167,6 +196,8 @@
 		C350B38A1F286AD00008F0E2 = {
 			isa = PBXGroup;
 			children = (
+				C3ACA5D4205F136300757F14 /* Spacework.entitlements */,
+				C3ACA5CC205F131800757F14 /* SpaceworkHelper.xcodeproj */,
 				C350B3951F286AD00008F0E2 /* Spaces */,
 				C350B3A71F286AD00008F0E2 /* SpacesTests */,
 				C350B3B21F286AD00008F0E2 /* SpacesUITests */,
@@ -179,7 +210,7 @@
 		C350B3941F286AD00008F0E2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C350B3931F286AD00008F0E2 /* Spaces.app */,
+				C350B3931F286AD00008F0E2 /* Spacework.app */,
 				C350B3A41F286AD00008F0E2 /* SpaceworkTests.xctest */,
 				C350B3AF1F286AD00008F0E2 /* SpaceworkUITests.xctest */,
 			);
@@ -239,6 +270,7 @@
 				C3F3BDF2204CF51B00CE96EA /* TRConfigManager.swift */,
 				C30A40E9205A2A72006BBF54 /* TRSyncManager.swift */,
 				C30A40F0205A3D0F006BBF54 /* TRStatusBarManager.swift */,
+				C3ACA5D720636BE200757F14 /* TRSettingsManager.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -259,6 +291,14 @@
 				C3A07D5C1F30380500D4E285 /* Logging.swift */,
 			);
 			name = Utility;
+			sourceTree = "<group>";
+		};
+		C3ACA5CD205F131800757F14 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C3ACA5D1205F131900757F14 /* SpaceworkHelper.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		E6D511F28D124F556D79ECD6 /* Pods */ = {
@@ -287,6 +327,7 @@
 				C350B3911F286AD00008F0E2 /* Resources */,
 				A9E6712678901B292F6A6801 /* [CP] Embed Pods Frameworks */,
 				BCCD4080CC7A24FDF0CA0A11 /* [CP] Copy Pods Resources */,
+				C3ACA5D5205F138A00757F14 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -294,7 +335,7 @@
 			);
 			name = Spacework;
 			productName = Spaces;
-			productReference = C350B3931F286AD00008F0E2 /* Spaces.app */;
+			productReference = C350B3931F286AD00008F0E2 /* Spacework.app */;
 			productType = "com.apple.product-type.application";
 		};
 		C350B3A31F286AD00008F0E2 /* SpaceworkTests */ = {
@@ -354,6 +395,11 @@
 						DevelopmentTeam = F63F9F65P7;
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					C350B3A31F286AD00008F0E2 = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -382,6 +428,12 @@
 			mainGroup = C350B38A1F286AD00008F0E2;
 			productRefGroup = C350B3941F286AD00008F0E2 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = C3ACA5CD205F131800757F14 /* Products */;
+					ProjectRef = C3ACA5CC205F131800757F14 /* SpaceworkHelper.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				C350B3921F286AD00008F0E2 /* Spacework */,
@@ -390,6 +442,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		C3ACA5D1205F131900757F14 /* SpaceworkHelper.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = SpaceworkHelper.app;
+			remoteRef = C3ACA5D0205F131900757F14 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		C350B3911F286AD00008F0E2 /* Resources */ = {
@@ -605,6 +667,7 @@
 			files = (
 				C30A40E620511B65006BBF54 /* FileEvent.swift in Sources */,
 				C3F3BDF1204C664400CE96EA /* TRFileManager.swift in Sources */,
+				C3ACA5D820636BE200757F14 /* TRSettingsManager.swift in Sources */,
 				C3A07D3B1F2C038900D4E285 /* TROverlayWindow.swift in Sources */,
 				C3D8D4011F29B25F00845A2E /* TRManagerBase.swift in Sources */,
 				C350B3991F286AD00008F0E2 /* ViewController.swift in Sources */,
@@ -784,6 +847,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Spacework.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = F63F9F65P7;
 				INFOPLIST_FILE = Spaces/Info.plist;
@@ -804,6 +868,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Spacework.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = F63F9F65P7;
 				INFOPLIST_FILE = Spaces/Info.plist;
