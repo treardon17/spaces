@@ -28,7 +28,7 @@ class TRStatusBarManager:TRManagerBase {
         menu.addItem(self.dropboxMenuItem!)
         
         menu.addItem(NSMenuItem.separator())
-        let loginTitle = TRSettingsManager.shared.loginAtStartupEnabled ? "Run at startup" : "Disable run at start"
+        let loginTitle = TRSettingsManager.shared.loginAtStartupEnabled ? "Disable run at start" : "Run at startup"
         self.loginMenuItem = NSMenuItem(title: loginTitle, action: #selector(toggleStartupLogin(_:)), keyEquivalent: "")
         self.loginMenuItem!.target = self
         menu.addItem(self.loginMenuItem!)
@@ -57,7 +57,7 @@ class TRStatusBarManager:TRManagerBase {
     
     @objc func toggleStartupLogin(_ sender: Any?) {
         TRSettingsManager.shared.setLoginStartup(enabled: !TRSettingsManager.shared.loginAtStartupEnabled)
-        let loginTitle = TRSettingsManager.shared.loginAtStartupEnabled ? "Run at startup" : "Disable run at start"
+        let loginTitle = TRSettingsManager.shared.loginAtStartupEnabled ? "Disable run at start" : "Run at startup"
         self.loginMenuItem!.title = loginTitle
     }
 
