@@ -194,7 +194,7 @@ class TRHotKey: NSObject{
             return Int(Keycode.w)
         case "x":
             return Int(Keycode.x)
-        case "y":tt
+        case "y":
             return Int(Keycode.y)
         case "z":
             return Int(Keycode.z)
