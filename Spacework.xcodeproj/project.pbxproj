@@ -129,8 +129,8 @@
 		C3D8D4001F29B25F00845A2E /* TRManagerBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TRManagerBase.swift; sourceTree = "<group>"; };
 		C3D8D4021F29C4EE00845A2E /* TRWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TRWindow.swift; sourceTree = "<group>"; };
 		C3D8D4041F29C69200845A2E /* TRApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TRApplication.swift; sourceTree = "<group>"; };
-		C3F3BDF0204C664400CE96EA /* TRFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRFileManager.swift; sourceTree = "<group>"; };
-		C3F3BDF2204CF51B00CE96EA /* TRConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRConfigManager.swift; sourceTree = "<group>"; };
+		C3F3BDF0204C664400CE96EA /* TRFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TRFileManager.swift; path = ../SpaceworkHelper/SpaceworkHelper/TRFileManager.swift; sourceTree = "<group>"; };
+		C3F3BDF2204CF51B00CE96EA /* TRConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TRConfigManager.swift; path = ../SpaceworkHelper/SpaceworkHelper/TRConfigManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -852,11 +852,11 @@
 				DEVELOPMENT_TEAM = F63F9F65P7;
 				INFOPLIST_FILE = Spaces/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.rockrabbit.Spaces;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rockrabbit.Spacework;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Spaces/Spaces-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -873,10 +873,10 @@
 				DEVELOPMENT_TEAM = F63F9F65P7;
 				INFOPLIST_FILE = Spaces/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.rockrabbit.Spaces;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rockrabbit.Spacework;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Spaces/Spaces-Bridging-Header.h";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;

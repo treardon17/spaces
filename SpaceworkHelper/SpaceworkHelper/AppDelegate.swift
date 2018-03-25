@@ -11,12 +11,9 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        var path:NSString = Bundle.main.bundlePath as NSString
-        path = path.deletingLastPathComponent as NSString
-        path = path.deletingLastPathComponent as NSString
-        path = path.deletingLastPathComponent as NSString
-        path = path.deletingLastPathComponent as NSString
-        NSWorkspace.shared.launchApplication(path as String)
+        if NSRunningApplication.runningApplications(withBundleIdentifier: "com.rockrabbit.Spacework").isEmpty {
+            NSWorkspace.shared.launchApplication("Spacework")
+        }
         NSApp.terminate(nil)
     }
 }

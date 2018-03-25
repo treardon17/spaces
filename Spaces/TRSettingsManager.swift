@@ -9,9 +9,15 @@
 import Foundation
 import ServiceManagement
 
-class TRSettingsManager{
+class TRSettingsManager: TRManagerBase{
     static let shared:TRSettingsManager = TRSettingsManager()
-    let loginItemUserDefaultKey = "loginEnabled"
+    let helperBundleIdentifier = "rockrabbit.SpaceworkHelper"
+    var loginItemUserDefaultKey:String!
+    
+    override init() {
+        super.init()
+        self.loginItemUserDefaultKey = "loginEnabled.\(self.helperBundleIdentifier)"
+    }
     
     var loginAtStartupEnabled:Bool {
         get{
@@ -24,7 +30,7 @@ class TRSettingsManager{
     }
     
     func setLoginStartup(enabled: Bool) {
-        if (!SMLoginItemSetEnabled("rockrabbit.SpaceworkHelper" as CFString, enabled)) {
+        if (!SMLoginItemSetEnabled(self.helperBundleIdentifier as CFString, enabled)) {
             print("Login at startup unsuccessful")
         } else {
             UserDefaults.standard.set(enabled, forKey: self.loginItemUserDefaultKey)
