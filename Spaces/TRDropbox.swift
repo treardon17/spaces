@@ -10,8 +10,19 @@ import Foundation
 import SwiftyDropbox
 
 class TRDropbox: NSObject {
-//    let newWindow = NSWindow(contentRect: NSMakeRect(0, 0, NSScreen.main!.frame.midX, NSScreen.main!.frame.midY), styleMask: [.closable, .fullSizeContentView, .titled, .miniaturizable, .fullScreen], backing: .buffered, defer: false)
-    let newWindow = TRWindow()
+    let window = TRWindow()
+    
+    override init() {
+        super.init()
+        
+        let button = NSButton()
+        window.view.addSubview(button)
+        button.autoCenterInSuperview()
+        button.setFrameSize(NSSize(width: 200, height: 75))
+        button.title = "Enable Dropbox"
+        button.action = #selector(loginDropbox)
+        button.target = self
+    }
     
     func registerDropbox() {
         if (DropboxOAuthManager.sharedOAuthManager == nil) {
@@ -20,19 +31,13 @@ class TRDropbox: NSObject {
         }
     }
     
-    func loginDropbox() {
-//        let viewController = NSViewController()
-//        DropboxClientsManager.authorizeFromController(sharedWorkspace: NSWorkspace.shared, controller: viewController, openURL: { (url: URL) -> Void in NSWorkspace.shared.open(url)
-//        })
-        
-        self.newWindow.showWindow()
-
-//        newWindow.title = "New Window"
-//        newWindow.isOpaque = false
-//        newWindow.center()
-//        newWindow.isMovableByWindowBackground = true
-//        newWindow.backgroundColor = NSColor.white
-//        newWindow.makeKeyAndOrderFront(nil)
+    @objc func loginDropbox() {
+        DropboxClientsManager.authorizeFromController(sharedWorkspace: NSWorkspace.shared, controller: self.window.contentViewController, openURL: { (url: URL) -> Void in NSWorkspace.shared.open(url)
+        })
+    }
+    
+    func showLoginWindow() {
+        self.window.showWindow()
     }
     
     @objc func handleGetURLEvent(_ event: NSAppleEventDescriptor?, replyEvent: NSAppleEventDescriptor?) {
